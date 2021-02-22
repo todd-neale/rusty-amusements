@@ -4,7 +4,7 @@ class AmusementsController < ApplicationController
   end
 
   def show
-    
+    @amusement = Amusement.find(params[:id])
   end
 
   def new
