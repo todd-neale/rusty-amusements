@@ -2,9 +2,11 @@
   <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/greece.jpg);">
     <div class="container">
     <h1><%= @amusement.name %></h1>
-    <p><%= @amusement.price %></p>
+    <p>£<%= @amusement.price %></p>
     </div>
   </div>
-  <p><%= @amusement.description %></p>
+  <div class="description mt-3">
+    <p><%= @amusement.description %></p>
+  </div>
   <a class="btn btn-flat" href="#">Book now!</a>
 </div>
