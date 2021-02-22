@@ -19,15 +19,15 @@ puts "generating users and amusements"
   user1.save
 
   amusement1 = Amusement.new(name: Faker::Books::Lovecraft.tome, description: Faker::Books::Lovecraft.fhtagn, price: rand(200..10000))
-  amusement1.user_id = user1.id
+  amusement1.user = user1
   amusement1.save
 
 9.times do
   user = User.new(email: Faker::Internet.email, password: 'password', password_confirmation: 'password')
   user.save
 
-  amusement = Amusement.new(name: Faker::Books::Lovecraft.tome, description: Faker::Books::Lovecraft.fhtagn, price: rand(200..10000))
-  amusement.user_id = user.id
+  amusement = Amusement.new(name: Faker::Kpop.iii_groups, description: Faker::Cannabis.buzzword, price: rand(200..10000))
+  amusement.user = user
   amusement.save
 end
 
