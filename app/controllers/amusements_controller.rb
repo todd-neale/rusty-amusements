@@ -1,5 +1,6 @@
 class AmusementsController < ApplicationController
   def index
+    @amusements = Amusement.all
   end
 
   def show
