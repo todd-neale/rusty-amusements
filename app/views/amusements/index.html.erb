@@ -3,7 +3,11 @@
   <% @amusements.each do |amusement| %>
     <%= link_to amusement_path(amusement) do %>
       <div class="card-trip">
-        <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/greece.jpg" />
+        <% if amusement.photos.attached? %>
+          <%= cl_image_tag amusement.photos.first.key %>
+        <% else %>
+          <img src="https://meanderingwild.com/wp-content/uploads/2020/03/fairground-bumper-close.jpg" />
+        <% end %>
         <div class="card-trip-infos">
           <div>
             <h2><%= amusement.name %></h2>
