@@ -1,13 +1,46 @@
 <div class="container mt-5">
-  <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/greece.jpg);">
-    <div class="container">
-    <h1><%= @amusement.name %></h1>
-    <p>£<%= @amusement.price %></p>
+  <div class="title-bar">
+    <div class="title">
+      <h1><%= @amusement.name %></h1>
     </div>
+    <div class="subheading">
+      <span>★</span>   
+      <%#<h3><strong><%=@amusment.rating%></strong></h3>
+      <span><strong>4.33</strong></span>
+      <%#<h3><%= @amusment.tagline%></h3>
+      <span>Oooh! you wouldnt belive the deaths</span>
   </div>
+
+  <div class="banner mt-3" style="background-image: url(https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/greece.jpg);">
+  </div>
+  <div class="tiles mt-2">
+    <div class="tile-category" style="background-image: url(https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/greece.jpg);"> </div>
+    <div class="tile-category" style="background-image: url(https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/greece.jpg);"> </div>
+    <div class="tile-category" style="background-image: url(https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/greece.jpg);"> </div>
+  </div>
+  
+  <div id="ends" class="mt-2">
+    <span><button class="btn btn-danger dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Book Now!</button></span>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a class="dropdown-item" href="#">Action</a>
+        <a class="dropdown-item" href="#">Another action</a>
+        <a class="dropdown-item" href="#">Something else here</a>
+      </div>
+    <span>£<%=@amusement.price%>.00</span>
+  </div>
+  
   <div class="description mt-3">
+    <HR>
     <p><%= @amusement.description %></p>
+    <HR>
   </div>
+
+  
+</div>
+
+
+
+=======
   <a class="btn btn-flat" href="#">Book now!</a>
   <%= link_to 'Edit amusement', edit_amusement_path(@amusement) %> |
   <%= link_to "Scrap amusement",
@@ -16,3 +49,4 @@
                   data: { confirm: "Are you sure?" } %>
   <%= render 'booking_form' %>
 </div>
+
