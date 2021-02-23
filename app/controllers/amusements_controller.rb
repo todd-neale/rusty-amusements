@@ -31,6 +31,13 @@ class AmusementsController < ApplicationController
     redirect_to amusement_path(@amusement)
   end
 
+  def destroy
+    @amusement = Amusement.find(params[:id])
+    @amusement.destroy
+
+    redirect_to amusements_path
+  end
+
   private
 
   def amusement_params
