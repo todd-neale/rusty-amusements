@@ -15,7 +15,8 @@
           <%= link_to "All amusements", amusements_path, class: "nav-link" %>
         </li>
         <li class="nav-item dropdown">
-          <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+          <% profile_picture = @user.photo.attached? ? user.photo.key : "gurn1_s3il5m" %>
+          <%= cl_image_tag profile_picture, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
             <%= link_to "My Profile", user_path(current_user), class: "dropdown-item" %>
             <%= link_to "Become a purve", new_amusement_path, class: "dropdown-item" %>
