@@ -5,6 +5,7 @@ class AmusementsController < ApplicationController
 
   def show
     @amusement = Amusement.find(params[:id])
+    @booking = Booking.new
   end
 
   def new
@@ -29,6 +30,13 @@ class AmusementsController < ApplicationController
     @amusement = Amusement.find(params[:id])
     @amusement.update amusement_params
     redirect_to amusement_path(@amusement)
+  end
+
+  def destroy
+    @amusement = Amusement.find(params[:id])
+    @amusement.destroy
+
+    redirect_to amusements_path
   end
 
   private

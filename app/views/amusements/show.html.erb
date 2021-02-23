@@ -34,8 +34,19 @@
     <p><%= @amusement.description %></p>
     <HR>
   </div>
+
   
 </div>
 
 
+
+=======
+  <a class="btn btn-flat" href="#">Book now!</a>
+  <%= link_to 'Edit amusement', edit_amusement_path(@amusement) %> |
+  <%= link_to "Scrap amusement",
+                  amusement_path(@amusement),
+                  method: :delete,
+                  data: { confirm: "Are you sure?" } %>
+  <%= render 'booking_form' %>
+</div>
 
