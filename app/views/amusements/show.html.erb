@@ -20,33 +20,29 @@
   </div>
   
   <div id="ends" class="mt-2">
-    <span><button class="btn btn-danger dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Book Now!</button></span>
-      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <a class="dropdown-item" href="#">Action</a>
-        <a class="dropdown-item" href="#">Another action</a>
-        <a class="dropdown-item" href="#">Something else here</a>
-      </div>
-    <span>£<%=@amusement.price%>.00</span>
+    <span>
+      <div class="dropdown">
+        <button class="btn btn-danger dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Book Now
+        </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+          <div class="dropdown-form"> <%= render 'booking_form' %>
+          </div>
+          </div>
+        </div>
+      </span>
+    <span>from £<%=@amusement.price%>.00</span>
   </div>
   
   <div class="description mt-3">
+    <div class="description-host">
+      <span> <h2> <%=@amusement.name%> rented by <%=@amusement.user.email%></h2> </span>
+    </div>
     <HR>
     <p><%= @amusement.description %></p>
     <HR>
   </div>
 
   
-</div>
-
-
-
-=======
-  <a class="btn btn-flat" href="#">Book now!</a>
-  <%= link_to 'Edit amusement', edit_amusement_path(@amusement) %> |
-  <%= link_to "Scrap amusement",
-                  amusement_path(@amusement),
-                  method: :delete,
-                  data: { confirm: "Are you sure?" } %>
-  <%= render 'booking_form' %>
 </div>
 
