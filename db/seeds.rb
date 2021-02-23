@@ -26,7 +26,13 @@ puts "generating users and amusements"
   user = User.new(email: Faker::Internet.email, password: 'password', password_confirmation: 'password')
   user.save
 
-  amusement = Amusement.new(name: Faker::Beer.name, description: Faker::Cannabis.health_benefit, price: rand(200..10000), tagline: Faker::Cannabis.health_benefit, deathcount: rand(0..99), size: "Medium", category: "Dodgems", haskilledanimals: true, childunfriendly: true, heightrestriction: true, haunting: true, illegal: true, washingmachine: true )
+  amusement = Amusement.new(name: Faker::Beer.name, description: Faker::Hipster.paragraph(sentence_count: 12), price: rand(200..10000), tagline: Faker::Cannabis.health_benefit, deathcount: rand(0..99), size: "Medium", category: "Dodgems" )
+  amusement.haskilledanimals = rand(1..10) < 6
+  amusement.childunfriendly = rand(1..10) < 6
+  amusement.heightrestriction = rand(1..10) < 6
+  amusement.haunting = rand(1..10) < 6
+  amusement.illegal = rand(1..10) < 6
+  amusement.washingmachine = rand(1..10) < 6
   amusement.user = user
   amusement.save
 end
