@@ -6,7 +6,7 @@
 // General style
 $font-family-sans-serif:  $body-font;
 $headings-font-family:    $headers-font;
-$body-bg: #A69314 !default;
+$body-bg: $earwax-yellow !default;
 $font-size-base: 1rem;
 
 // Colors
@@ -16,7 +16,6 @@ $success:    $green;
 $info:       $yellow;
 $danger:     $red;
 $warning:    $orange;
-$red: #FF4747;
 
 // Buttons & inputs' radius
 $border-radius:    2px;
