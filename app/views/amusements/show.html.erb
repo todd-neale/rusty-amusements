@@ -1,12 +1,52 @@
 <div class="container mt-5">
-  <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/greece.jpg);">
-    <div class="container">
-    <h1><%= @amusement.name %></h1>
-    <p>£<%= @amusement.price %></p>
+  <div class="title-bar">
+    <div class="title">
+      <h1><%= @amusement.name %></h1>
     </div>
+    <div class="subheading">
+      <span>★</span>
+      <%#<h3><strong><%=@amusment.rating%></strong></h3>
+      <span><strong>4.33</strong></span>
+      <%#<h3><%= @amusment.tagline%></h3>
+      <span>Oooh! you wouldnt belive the deaths</span>
   </div>
+
+  <% if @amusement.photos.attached? %>
+    <div class="banner mt-3" style="background-image: url('<%= cl_image_path @amusement.photos.first.key %>');"></div>
+    <div class="tiles mt-2">
+      <% @amusement.photos[1..-1].each_with_index do |photo, i| %>
+        <% break if i == 3%>
+        <div class="tile-category" style="background-image: url('<%= cl_image_path photo.key %>');"></div>
+      <% end %>
+    </div>
+  <% else %>
+    <div class="banner mt-3" style="background-image: url(https://meanderingwild.com/wp-content/uploads/2020/03/fairground-bumper-close.jpg);"></div>
+  <% end %>
+
+  <div id="ends" class="mt-2">
+    <span>
+      <div class="dropdown">
+        <button class="btn btn-danger dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Book Now
+        </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+          <div class="dropdown-form"> <%= render 'booking_form' %>
+          </div>
+          </div>
+        </div>
+      </span>
+    <span>from £<%=@amusement.price%>.00</span>
+  </div>
+
   <div class="description mt-3">
+    <div class="description-host">
+      <span> <h2> <%=@amusement.name%> rented by <%=@amusement.user.email%></h2> </span>
+    </div>
+    <HR>
     <p><%= @amusement.description %></p>
+    <HR>
   </div>
-  <a class="btn btn-flat" href="#">Book now!</a>
+
+
 </div>
+
