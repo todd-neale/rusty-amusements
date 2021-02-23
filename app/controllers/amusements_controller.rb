@@ -1,10 +1,12 @@
 class AmusementsController < ApplicationController
   def index
-    @amusements = Amusement.all
+    # @amusements = Amusement.all
+    @amusements = policy_scope(Amusement)
   end
 
   def show
     @amusement = Amusement.find(params[:id])
+    authorize @amusement
   end
 
   def new
@@ -23,10 +25,12 @@ class AmusementsController < ApplicationController
 
   def edit
     @amusement = Amusement.find(params[:id])
+    authorize @amusement
   end
 
   def update
     @amusement = Amusement.find(params[:id])
+    authorize @amusement
     @amusement.update amusement_params
     redirect_to amusement_path(@amusement)
   end
