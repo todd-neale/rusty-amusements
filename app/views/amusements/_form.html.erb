@@ -1,7 +1,20 @@
 <%= simple_form_for @amusement do |f| %>
   <%= f.input :name %>
+  <%= f.input :tagline %>
   <%= f.input :description %>
   <%= f.input :price %>
   <%= f.input :photos, as: :file, input_html: { multiple: true } %>
+  <%= f.input :deathcount, label: 'Please fill in the amusements deathcount:'%>
+  <%= f.input :size, label: 'What size is your amusement?', :collection => %w[ Small Medium Large XL ] %>
+  <%= f.input :category, :collection => %w[ Dodgems Merry-Go-Round Waterride Haunted\ House House\ of\ Mirrors Pendulum\ Ride Droptower Rollercoaster Teacups Waltzer High\ Striker Washing\ Machine Other] %>
+  <%= f.input :haskilledanimals, label: 'Has your amusement killed any animals?' %>
+  <%= f.input :childunfriendly, label: 'Is your amusement child unfriendly? (default this is deadly for children)' %>
+  <%= f.input :heightrestriction, label: 'Does your amusement have a height restriction of 1.5m or greater?' %>
+  <%= f.input :haunting, label: 'Has your ride emparted adverse longterm psychological affects upon your customer?' %>
+  <%= f.input :illegal, label: 'Has your ride been declared illegal by your current jurisdiction?'%>
+  <%= f.input :washingmachine, label: 'Washing Machine Available?' %>
+
   <%= f.button :submit, class: "btn btn-danger" %>
 <% end %>
+
+
