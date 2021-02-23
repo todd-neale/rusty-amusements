@@ -1,6 +1,10 @@
-.description {
-  width: 700px;
-  margin: 40px auto;
+
+ul {
+  list-style: none;
+}
+
+li {
+  margin: 0 0 3px 0;
 }
 
 #ends {
@@ -8,6 +12,11 @@
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
+  margin: 40px auto;
+}
+
+.description {
+  width: 700px;
   margin: 40px auto;
 }
 
@@ -28,6 +37,7 @@
   font-size: 24px;
   font-weight: bold;
 }
+
 
 .dropdown-menu {
   padding: 10px;

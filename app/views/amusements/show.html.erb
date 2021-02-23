@@ -5,10 +5,8 @@
     </div>
     <div class="subheading">
       <span>★</span>
-      <%#<h3><strong><%=@amusment.rating%></strong></h3>
       <span><strong>4.33</strong></span>
-      <%#<h3><%= @amusment.tagline%></h3>
-      <span>Oooh! you wouldnt belive the deaths</span>
+      <span><%= @amusement.tagline %></span>
   </div>
 
   <% if @amusement.photos.attached? %>
@@ -41,6 +39,30 @@
   <div class="description mt-3">
     <div class="description-host">
       <span> <h2> <%=@amusement.name%> rented by <%=@amusement.user.email%></h2> </span>
+    </div>
+    <HR>
+    <div>
+    <h4>Exclusive Features:<h4>
+    <ul>
+      <li><span><%= image_tag "jester.png", :width => "50px" %> <%=@amusement.category%></li> 
+      <li><% if @amusement.haskilledanimals == true %>
+        <div><span><%= image_tag "dead.png", :width => "50px" %> </span> <span>This amusement has killed at least one animal </span></div>
+      <% end %>
+      <li><% if @amusement.childunfriendly == true %>
+          <div><span><%= image_tag "18.png", :width => "50px" %> </span> <span>This amusement is not child friendly</span></div>
+        <% end %>
+      <li><% if @amusement.heightrestriction == true%>
+            <div><span><%= image_tag "height.png", :width => "50px" %> </span> <span>This amusement has a height restriction of >1.5m</span><div> 
+          <%end%>
+      <li>  <% if @amusement.haunting == true%>
+              <div><span><%= image_tag "psychosis.png", :width => "50px" %> </span> <span>Long term adverse affects caused to users in the past</span></div> 
+            <%end%>
+      <li>  <% if @amusement.illegal == true%>
+              <div><span><%= image_tag "illegal.png", :width => "50px" %> </span> <span>This amusement is illegal in certain jurisdictions</span></div> 
+            <%end%>
+      <li>  <% if @amusement.washingmachine == true%>
+              <div><span><%= image_tag "washing.png", :width => "50px" %> </span> <span>Washing machine included</span></div> 
+            <%end%>  
     </div>
     <HR>
     <p><%= @amusement.description %></p>

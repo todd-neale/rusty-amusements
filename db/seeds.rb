@@ -28,9 +28,19 @@ avatar_cloudinary_keys = %w(gurn8_hh9b0p gurn7_r8ez4f gurn6_tbcttg gurn3_k3mi0n 
   user = User.new(email: Faker::Internet.email, password: 'password', password_confirmation: 'password')
   user.save
 
-  amusement = Amusement.new(name: Faker::Kpop.iii_groups, description: Faker::Cannabis.buzzword, price: rand(200..10000))
+  amusement = Amusement.new(name: Faker::Beer.name, description: Faker::Hipster.paragraph(sentence_count: 12), price: rand(200..10000), tagline: Faker::Cannabis.health_benefit, deathcount: rand(0..99) )
+  amusement.haskilledanimals = rand(1..10) < 6
+  amusement.childunfriendly = rand(1..10) < 6
+  amusement.heightrestriction = rand(1..10) < 6
+  amusement.haunting = rand(1..10) < 6
+  amusement.illegal = rand(1..10) < 6
+  amusement.washingmachine = rand(1..10) < 6
+  amusement.size = ['Small', 'Medium', 'Large', 'XL'].sample
+  amusement.category = ['Bouncy Castle', 'Dodgems', 'Merry-Go-Round', 'Waterride', 'Haunted House', 'House of Mirrors', 'Pendulum Ride', 'Droptower', 'Rollercoaster', 'Teacups', 'Waltzer', 'High Striker', 'Washing Machine', 'Other'].sample
   amusement.user = user
   amusement.save
 end
 
 puts "finished"
+
+
