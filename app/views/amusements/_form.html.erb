@@ -6,7 +6,7 @@
   <%= f.input :photos, as: :file, input_html: { multiple: true } %>
   <%= f.input :deathcount, label: 'Please fill in the amusements deathcount:'%>
   <%= f.input :size, label: 'What size is your amusement?', :collection => %w[ Small Medium Large XL ] %>
-  <%= f.input :category, :collection => %w[ Dodgems Merry-Go-Round Waterride Haunted\ House House\ of\ Mirrors Pendulum\ Ride Droptower Rollercoaster Teacups Waltzer High\ Striker Washing\ Machine Other] %>
+  <%= f.input :category, :collection => %w[ Bouncy\ Castle Dodgems Merry-Go-Round Waterride Haunted\ House House\ of\ Mirrors Pendulum\ Ride Droptower Rollercoaster Teacups Waltzer High\ Striker Washing\ Machine Other] %>
   <%= f.input :haskilledanimals, label: 'Has your amusement killed any animals?' %>
   <%= f.input :childunfriendly, label: 'Is your amusement child unfriendly? (default this is deadly for children)' %>
   <%= f.input :heightrestriction, label: 'Does your amusement have a height restriction of 1.5m or greater?' %>
