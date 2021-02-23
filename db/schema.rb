@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_23_152319) do
+ActiveRecord::Schema.define(version: 2021_02_23_161613) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,7 +56,7 @@ ActiveRecord::Schema.define(version: 2021_02_23_152319) do
     t.string "category"
     t.boolean "haskilledanimals", default: false
     t.boolean "washingmachine", default: false
-    t.boolean "childunfriendly", default: false
+    t.boolean "childunfriendly", default: true
     t.boolean "heightrestriction", default: false
     t.boolean "haunting", default: false
     t.boolean "illegal", default: false
