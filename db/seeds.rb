@@ -8,7 +8,7 @@
 
 # User.
 puts "scrapping amusements, killing users"
-
+Booking.destroy_all
 Amusement.destroy_all
 User.destroy_all
 
@@ -21,6 +21,8 @@ puts "generating users and amusements"
   amusement1 = Amusement.new(name: Faker::Books::Lovecraft.tome, description: Faker::Books::Lovecraft.fhtagn, price: rand(200..10000))
   amusement1.user = user1
   amusement1.save
+
+avatar_cloudinary_keys = %w(gurn8_hh9b0p gurn7_r8ez4f gurn6_tbcttg gurn3_k3mi0n gurn4_q1onca gurn1_s3il5m gurn2_fzkdqc gurn5_swk2oo)
 
 9.times do
   user = User.new(email: Faker::Internet.email, password: 'password', password_confirmation: 'password')
