@@ -1,0 +1,4 @@
+<% case booking.status %>
+  <% when "confirmed" %>
+  <%= link_to 'Cancel Booking', booking_path(booking, status: 'cancelled'), method: :patch, class: "btn btn-danger" %>
+<% end %>
