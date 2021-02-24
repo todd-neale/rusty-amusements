@@ -42,6 +42,6 @@ class AmusementsController < ApplicationController
   private
 
   def amusement_params
-    params.require(:amusement).permit(:name, :tagline, :description, :price, :deathcount, :size, :category, :haskilledanimals, :washingmachine, :childunfriendly, :heightrestriction, :haunting, :illegal, photos: [])
+    params.require(:amusement).permit(:name, :tagline, :description, :address, :price, :deathcount, :size, :category, :haskilledanimals, :washingmachine, :childunfriendly, :heightrestriction, :haunting, :illegal, photos: [])
   end
 end
