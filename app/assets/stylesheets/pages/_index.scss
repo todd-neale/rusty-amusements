@@ -5,10 +5,15 @@
 .container {
   display: flex;
   flex-wrap: wrap;
-
 }
 
 .card-container {
   margin: 10px;
 }
+
  
+#map {
+  background-image: url("https://media1.fdncms.com/orlando/imager/u/blog/4609290/tumblr_oqgjv6xc0m1s4df8ko1_1280.png?cb=1531348609");
+  object-fit: cover;
+  height: 400px;
+}

@@ -1,6 +1,15 @@
+<body>
+<div class"contents mt5">
+
 <h1>Available Amusements</h1>
 
-<div class="container mt-5">
+<div id="map">
+
+</div>
+
+<div class="container">
+
+
 
   <% @amusements.each do |amusement| %>
     <%= link_to amusement_path(amusement) do %>
@@ -25,4 +34,7 @@
     <% end %>
   <% end %>
 </div>
+</div>
+
+</body>
 
