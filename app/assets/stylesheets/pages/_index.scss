@@ -2,13 +2,13 @@
 @import "home";
 @import "show";
 
-.container {
+.flexbox {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
 }
 
-.card-container {
+.card-flexbox {
   margin: 10px;
   width: 400px;
 }
