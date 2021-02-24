@@ -1,6 +1,14 @@
 class AmusementsController < ApplicationController
   def index
     @amusements = Amusement.all
+
+    @markers = @amusements.geocoded.map do |amusement|
+      {
+        lat: amusement.latitude,
+        lng: amusement.longitude,
+        infoWindow: render_to_string(partial: "info_window", locals: { amusement: amusement })
+      }
+    end
   end
 
   def show
@@ -42,6 +50,6 @@ class AmusementsController < ApplicationController
   private
 
   def amusement_params
-    params.require(:amusement).permit(:name, :tagline, :description, :price, :deathcount, :size, :category, :haskilledanimals, :washingmachine, :childunfriendly, :heightrestriction, :haunting, :illegal, photos: [])
+    params.require(:amusement).permit(:name, :tagline, :description, :address, :price, :deathcount, :size, :category, :haskilledanimals, :washingmachine, :childunfriendly, :heightrestriction, :haunting, :illegal, photos: [])
   end
 end

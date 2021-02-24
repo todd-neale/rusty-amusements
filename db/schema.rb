@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_24_104214) do
+ActiveRecord::Schema.define(version: 2021_02_24_105806) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,6 +60,9 @@ ActiveRecord::Schema.define(version: 2021_02_24_104214) do
     t.boolean "heightrestriction", default: false
     t.boolean "haunting", default: false
     t.boolean "illegal", default: false
+    t.float "latitude"
+    t.float "longitude"
+    t.string "address"
     t.index ["user_id"], name: "index_amusements_on_user_id"
   end
 
