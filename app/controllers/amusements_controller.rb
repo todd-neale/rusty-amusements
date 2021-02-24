@@ -5,7 +5,8 @@ class AmusementsController < ApplicationController
     @markers = @amusements.geocoded.map do |amusement|
       {
         lat: amusement.latitude,
-        lng: amusement.longitude
+        lng: amusement.longitude,
+        infoWindow: render_to_string(partial: "info_window", locals: { amusement: amusement })
       }
     end
   end
