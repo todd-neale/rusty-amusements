@@ -1,7 +1,7 @@
 <div class="container mt-5">
   <h1><%= @user.name %></h1>
   <%= link_to "edit details", edit_user_registration_path %>
-  <% profile_picture = @user.photo.attached? ? user.photo.key : "gurn1_s3il5m" %>
+  <% profile_picture = @user.photo.attached? ? @user.photo.key : "gurn1_s3il5m" %>
   <%= cl_image_tag(profile_picture, width: 150, height: 150, crop: :fill) %>
 
   <% unless @owned_amusements.empty? %>
