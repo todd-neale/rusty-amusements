@@ -1,6 +1,6 @@
 <div class="container mt-5">
   <div class="profile-info">
-    <% profile_picture = @user.photo.attached? ? user.photo.key : "gurn1_s3il5m" %>
+    <% profile_picture = @user.photo.attached? ? @user.photo.key : "gurn1_s3il5m" %>
       <%= cl_image_tag(profile_picture, width: 150, height: 150, crop: :fill) %>
     <br>
     <br>
@@ -25,20 +25,9 @@
           <% end %>
         </div> 
       </div>
-=======
-  <h1><%= @user.name %></h1>
-  <%= link_to "edit details", edit_user_registration_path %>
-  <% profile_picture = @user.photo.attached? ? @user.photo.key : "gurn1_s3il5m" %>
-  <%= cl_image_tag(profile_picture, width: 150, height: 150, crop: :fill) %>
-
-  <% unless @owned_amusements.empty? %>
-    <h2>Amusements what I own</h2>
-    <% @owned_amusements.each do |amusement| %>
-      <h3><%= amusement.name %></h3>
-      <p><%= amusement.description %></p>
-      <%= link_to "Edit Amusemement", edit_amusement_path(amusement), class: "btn btn-primary" %>
     <% end %>
   </div>
+
 
   <HR>
 
