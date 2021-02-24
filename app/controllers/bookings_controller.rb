@@ -5,7 +5,7 @@ class BookingsController < ApplicationController
     @booking.user = current_user
     if @booking.save
       # this should be changed to redirect to user profile page
-      redirect_to amusement_path(@booking.amusement)
+      redirect_to user_path(current_user), notice: "Booking request sent to dangerous carnie."
     else
       # both hsould have some kind of alert/modal, to let them know of their success/failure
       redirect_to amusement_path(@booking.amusement)
