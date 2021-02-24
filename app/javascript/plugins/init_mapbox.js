@@ -26,7 +26,7 @@ const initMapbox = () => {
   if (mapElement) {
     const map = new mapboxgl.Map({
       container: 'map',
-      style: 'mapbox://styles/mapbox/streets-v10'
+      style: 'mapbox://styles/amarriott/ckljm5ca40j7t17ukqwn4xd6l'
     });
 
     markers.forEach((marker) => {
