@@ -80,7 +80,8 @@ amusement1 = Amusement.new(name: Faker::Beer.name,
                           illegal: false,
                           washingmachine:true,
                           size: 'Medium',
-                          category: 'Rollercoaster' )
+                          category: 'Rollercoaster',
+                          address: 'Bothenhampton, Dorset' )
 amusement1.user = rusty
 amuse_img = URI.open('https://res.cloudinary.com/arfacamble/image/upload/v1614172490/derilict-comet-rollercoaster-in-lincoln-park-massachusetts-abandoned-1987-via-psfk_vbldbo.jpg')
 amusement1.photos.attach(io: amuse_img, filename: "roller.jpg", content_type: 'image/png')
