@@ -16,7 +16,7 @@
         </li>
         <li class="nav-item dropdown">
           <% profile_picture = current_user.photo.attached? ? current_user.photo.key : "gurn1_s3il5m" %>
-          <%= cl_image_tag profile_picture, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+          <%= cl_image_tag profile_picture, class: "avatar dropdown-toggle pointer", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
             <%= link_to "My Profile", user_path(current_user), class: "dropdown-item" %>
             <%= link_to "Become a purve", new_amusement_path, class: "dropdown-item" %>
