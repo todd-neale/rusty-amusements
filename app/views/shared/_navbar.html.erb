@@ -11,7 +11,7 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <% if user_signed_in? %>
-        <li class="nav-item">
+        <li class="nav-item" id="nav-item-white-text">
           <%= link_to "All amusements", amusements_path, class: "nav-link" %>
         </li>
         <li class="nav-item dropdown">
