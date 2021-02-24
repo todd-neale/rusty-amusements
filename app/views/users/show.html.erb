@@ -16,7 +16,7 @@
     <h2>Amusements what I own</h2>
     <% @owned_amusements.each do |amusement| %>
     <div class="card-product">
-      <img src="https://meanderingwild.com/wp-content/uploads/2020/03/fairground-bumper-close.jpg" />
+      <%= cl_image_tag amusement.photos.first.key, alt: "rust" %>
       <div class="card-product-infos">
         <h2><%= amusement.name %></h2>
         <p><%= amusement.tagline %></p>
@@ -24,9 +24,8 @@
         <% end %>
       </div>
     </div>
+    <HR>
   <% end %>
-
-  <HR>
 
   <% unless @bookings.empty? %>
     <h2>Bookings what are coming up</h2>
@@ -41,9 +40,8 @@
         </div>
       </div>
     <% end %>
+    <HR>
   <% end %>
-
-  <HR>
 
   <% unless @lettings.empty? %>
     <h2>Amusements what people want from me</h2>
