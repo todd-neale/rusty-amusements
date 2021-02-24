@@ -1,5 +1,5 @@
 <body>
-<div class"contents mt5">
+<div class"container mt5">
 
 <h1>Available Amusements</h1>
 
@@ -7,13 +7,13 @@
 
 </div>
 
-<div class="container">
+<div class="flexbox">
 
 
 
   <% @amusements.each do |amusement| %>
     <%= link_to amusement_path(amusement) do %>
-      <div class="card-container">
+      <div class="card-flexbox">
         <div class="card-trip">
           <% if amusement.photos.attached? %>
             <%= cl_image_tag amusement.photos.first.key %>
