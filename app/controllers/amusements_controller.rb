@@ -1,6 +1,13 @@
 class AmusementsController < ApplicationController
   def index
     @amusements = Amusement.all
+
+    @markers = @amusements.geocoded.map do |amusement|
+      {
+        lat: amusement.latitude,
+        lng: amusement.longitude
+      }
+    end
   end
 
   def show
