@@ -9,4 +9,9 @@
 
 .navbar-lewagon .navbar-brand img {
   width: 50px;
+  filter: invert(100%);
+}
+
+#nav-item-white-text a {
+  color: white;
 }
