@@ -1,44 +1,42 @@
 <body>
-<div class"container mt5">
+  <div class="container mt5">
 
-<h1>Available Amusements</h1>
+    <h1>Available Amusements</h1>
 
-<div id="map">
+    <div id="map"
+    style="height: 500px;"
+    data-markers="<%= @markers.to_json %>"
+    data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
+    </div>
 
-</div>
 
-<div class="flexbox">
-
+  <div class="flexbox">
 
 
-  <% @amusements.each do |amusement| %>
+
+    <% @amusements.each do |amusement| %>
     <%= link_to amusement_path(amusement) do %>
-      <div class="card-flexbox">
-        <div class="card-trip">
-          <% if amusement.photos.attached? %>
-            <%= cl_image_tag amusement.photos.first.key %>
-          <% else %>
-            <img src="https://meanderingwild.com/wp-content/uploads/2020/03/fairground-bumper-close.jpg" />
-          <% end %>
-          <div class="card-trip-infos">
-            <div>
-              <h2><%= amusement.name %></h2>
-              <p>★<strong>4.33</strong> <%= amusement.tagline %></p>
-            </div>
-            <h2 class="card-trip-pricing">£<%= amusement.price %>.00</h2>
-              <!-- remember to put in logic for IF user has picture -->
-              <img src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-trip-user avatar-bordered" />
+    <div class="card-flexbox">
+      <div class="card-trip">
+        <% if amusement.photos.attached? %>
+        <%= cl_image_tag amusement.photos.first.key %>
+        <% else %>
+        <img src="https://meanderingwild.com/wp-content/uploads/2020/03/fairground-bumper-close.jpg" />
+        <% end %>
+        <div class="card-trip-infos">
+          <div>
+            <h2><%= amusement.name %></h2>
+            <p>★<strong>4.33</strong> <%= amusement.tagline %></p>
           </div>
+          <h2 class="card-trip-pricing">£<%= amusement.price %>.00</h2>
+          <!-- remember to put in logic for IF user has picture -->
+          <img src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-trip-user avatar-bordered" />
         </div>
       </div>
+    </div>
     <% end %>
-  <% end %>
-</div>
+    <% end %>
+  </div>
 </div>
 
 </body>
-
-<div id="map"
-     style="width: 100%; height: 600px;"
-     data-markers="<%= @markers.to_json %>"
-     data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"></div>
