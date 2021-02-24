@@ -1,4 +1,31 @@
 <div class="container mt-5">
+  <div class="profile-info">
+    <% profile_picture = @user.photo.attached? ? user.photo.key : "gurn1_s3il5m" %>
+      <%= cl_image_tag(profile_picture, width: 150, height: 150, crop: :fill) %>
+    <br>
+    <br>
+    <h1><%= @user.name.capitalize %></h1>
+    <p><%= @user.email %></p>
+    <p> <strong>Rank:</strong> Carny </p>
+    <button type="button" class="btn btn-outline-info btn-sm"><%= link_to "Update my profile", edit_user_registration_path %></button>
+  </div>
+
+  <HR>
+
+  <div class="amusments">
+    <% unless @owned_amusements.empty? %>
+      <h2>Amusements what I own</h2>
+      <% @owned_amusements.each do |amusement| %>
+      <div class="card-product">
+        <img src="https://meanderingwild.com/wp-content/uploads/2020/03/fairground-bumper-close.jpg" />
+        <div class="card-product-infos">
+          <h2><%= amusement.name %></h2>
+          <p><%= amusement.tagline %></p>
+          <%= link_to "Edit", edit_amusement_path(amusement), class: "btn btn-outline-secondary btn-sm" %>
+          <% end %>
+        </div> 
+      </div>
+=======
   <h1><%= @user.name %></h1>
   <%= link_to "edit details", edit_user_registration_path %>
   <% profile_picture = @user.photo.attached? ? @user.photo.key : "gurn1_s3il5m" %>
@@ -11,27 +38,45 @@
       <p><%= amusement.description %></p>
       <%= link_to "Edit Amusemement", edit_amusement_path(amusement), class: "btn btn-primary" %>
     <% end %>
-  <% end %>
+  </div>
 
-  <% unless @bookings.empty? %>
-    <h2>Bookings what are coming up</h2>
-    <% @bookings.each do |booking| %>
-      <h3><%= booking.amusement.name %></h3>
-      <p><%= booking.start_date %> to <%= booking.end_date %></p>
-      <p><%= booking.status %></p>
-      <%= render 'booking_status_buttons', booking: booking %>
+  <HR>
+
+  <div class="bookings">
+    <% unless @bookings.empty? %>
+      <h2>Bookings what are coming up</h2>
+      <% @bookings.each do |booking| %>
+        <div class="card-product">
+        <img src="https://meanderingwild.com/wp-content/uploads/2020/03/fairground-bumper-close.jpg" />
+        <div class="card-product-infos">
+          <h2><%= booking.amusement.name %></h2>
+          <p><%= booking.start_date %> to <%= booking.end_date %></p>
+          <p><%= booking.status %></p>
+          <%= render 'booking_status_buttons', booking: booking %>
+          <% end %>
+        </div> 
+      </div>
     <% end %>
-  <% end %>
+  </div>
 
+  <HR>
+  
+  <div class="lettings">
   <% unless @lettings.empty? %>
     <h2>Amusements what people want from me</h2>
     <% @lettings.each do |letting| %>
-      <h3><%= letting.amusement.name %></h3>
-      <p><%= letting.start_date %> to <%= letting.end_date %></p>
-      <p><%= letting.status %></p>
-      <%= render 'letting_status_buttons', letting: letting %>
+      <div class="card-product">
+        <img src="https://meanderingwild.com/wp-content/uploads/2020/03/fairground-bumper-close.jpg" />
+        <div class="card-product-infos">
+          <h2><%= letting.amusement.name %></h2>
+          <p><%= letting.start_date %> to <%= letting.end_date %></p>
+          <p><%= letting.status %></p>
+          <%= render 'letting_status_buttons', letting: letting %>
+          <% end %>
+        </div> 
+      </div>
     <% end %>
-  <% end %>
+  </div>
 
 </div>
 
