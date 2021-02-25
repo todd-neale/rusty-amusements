@@ -22,17 +22,21 @@
   <% end %>
 
   <div id="ends" class="mt-2">
-    <span>
-      <div class="dropdown">
-        <button class="btn btn-danger dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Book Now
-        </button>
-          <div class="dropdown-menu" aria-labelledby="dropdownMenu2" id="dropdown-booking">
-          <div class="dropdown-form"> <%= render 'booking_form' %>
-          </div>
-          </div>
+    <% if @amusement.user == current_user %>
+      <%= link_to "Edit your Amusement", edit_amusement_path(@amusement), class: "btn btn-danger" %>
+    <% else %>
+      <span>
+        <div class="dropdown">
+          <button class="btn btn-danger dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Book Now
+          </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenu2" id="dropdown-booking">
+              <div class="dropdown-form"> <%= render 'booking_form' %>
+              </div>
+            </div>
         </div>
       </span>
+    <% end %>
     <span>from £<%=@amusement.price%>.00</span>
   </div>
 
@@ -68,7 +72,21 @@
     <p><%= @amusement.description %></p>
     <HR>
   </div>
-
-
+  <% if @review %>
+    <div class="review-form">
+      <%= render 'reviews/review_form' %>
+    </div>
+  <% end %>
+  <div class="reviews">
+    <h3>Reviews</h3>
+    <% if @reviews.empty? %>
+      <h4>No reviews yet, but you can be sure it's awful</h4>
+    <% else %>
+      <% @reviews.each do |review| %>
+        <% review.rating.times do |num| %><%= '★' %><% end %>
+        <p><%= review.comment %></p>
+      <% end %>
+    <% end %>
+  </div>
 </div>
 

@@ -15,6 +15,11 @@ class AmusementsController < ApplicationController
   def show
     @amusement = Amusement.find(params[:id])
     @booking = Booking.new
+    @reviews = @amusement.reviews
+    if @amusement.bookings.map { |boo| boo.user }.include? current_user
+      @booking_for_review = Booking.where(amusement: @amusement, user: current_user)[0]
+      @review = Review.new
+    end
   end
 
   def new
