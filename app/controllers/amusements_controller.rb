@@ -1,6 +1,11 @@
 class AmusementsController < ApplicationController
   def index
-    @amusements = Amusement.all
+    if params[:query]
+      @amusements = Amusement.index_search(params[:query])
+      @apology = "Sozza. No results for that search. Try 'dodgems'" if @amusements.empty?
+    else
+      @amusements = Amusement.all
+    end
 
     @markers = @amusements.geocoded.map do |amusement|
       {
@@ -14,6 +19,13 @@ class AmusementsController < ApplicationController
   def show
     @amusement = Amusement.find(params[:id])
     @booking = Booking.new
+    @reviews = @amusement.reviews.shuffle.first(5)
+    if @amusement.bookings.map { |boo| boo.user }.include? current_user
+      @booking_for_review = Booking.where(amusement: @amusement, user: current_user)[0]
+      @review = Review.new
+    end
+    ratings = @amusement.reviews.map { |r| r.rating } 
+    @rating = ratings.empty? ? 0.00 : (ratings.sum(0.0) / ratings.size).round(2)
   end
 
   def new

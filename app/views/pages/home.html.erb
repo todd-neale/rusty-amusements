@@ -2,6 +2,9 @@
   <div class="container">
     <h1 class="circus">One man's trash is Rusty's inventory</h1>
     <p>Embark on a <em>lifechanging</em> experience</p>
+    <div class="search-bar">
+      <%= render "amusements/search_form" %>
+    </div>
     <%= link_to amusements_path do  %>
       <button type="button" class="btn btn-lg btn-danger">Explore amusements</button>
     <% end %>
@@ -14,7 +17,6 @@
     <h5>High octane thrills</h5>
     <p>Amusements that will have your heart in your mouth, from beginning to unanticipated end.</p>
   </div>
-
   <div class="card-minimal">
     <%= image_tag "money_wings", alt: "money with wings" %>
     <h5>Cash in hand</h5>
