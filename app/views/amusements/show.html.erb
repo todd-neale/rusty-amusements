@@ -22,17 +22,21 @@
   <% end %>
 
   <div id="ends" class="mt-2">
-    <span>
-      <div class="dropdown">
-        <button class="btn btn-danger dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Book Now
-        </button>
-          <div class="dropdown-menu" aria-labelledby="dropdownMenu2" id="dropdown-booking">
-          <div class="dropdown-form"> <%= render 'booking_form' %>
-          </div>
-          </div>
+    <% if @amusement.user == current_user %>
+      <%= link_to "Edit your Amusement", edit_amusement_path(@amusement), class: "btn btn-danger" %>
+    <% else %>
+      <span>
+        <div class="dropdown">
+          <button class="btn btn-danger dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Book Now
+          </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenu2" id="dropdown-booking">
+              <div class="dropdown-form"> <%= render 'booking_form' %>
+              </div>
+            </div>
         </div>
       </span>
+    <% end %>
     <span>from £<%=@amusement.price%>.00</span>
   </div>
 
