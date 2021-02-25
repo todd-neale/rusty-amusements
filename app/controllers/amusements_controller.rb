@@ -20,7 +20,7 @@ class AmusementsController < ApplicationController
       @review = Review.new
     end
     ratings = @amusement.reviews.map { |r| r.rating } 
-    @rating = (ratings.sum(0.0) / ratings.size).round(2)
+    @rating = ratings.empty? ? 0.00 : (ratings.sum(0.0) / ratings.size).round(2)
   end
 
   def new

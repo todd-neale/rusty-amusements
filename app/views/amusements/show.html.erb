@@ -10,7 +10,7 @@
   </div>
 
   <% if @amusement.photos.attached? %>
-    <div class="banner mt-3" style="background-image: url('<%= cl_image_path @amusement.photos.first.key %>');"></div>
+    <div class="main-photo mt-3" style="background-image: url('<%= cl_image_path @amusement.photos.first.key %>');"></div>
       <div class="tiles mt-2">
         <% @amusement.photos[1..-1].each_with_index do |photo, i| %>
           <% break if i == 3%>
