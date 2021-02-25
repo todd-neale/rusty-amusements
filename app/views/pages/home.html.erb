@@ -36,7 +36,7 @@
     <% @amusements.each do |amusement| %>
       <div class="col-6">
         <%= link_to amusement_path(amusement) do %>
-            <div class="card-trip card-trip-home">
+            <div class="card-trip card-trip-home mb-4">
               <% if amusement.photos.attached? %>
                 <%= cl_image_tag amusement.photos.first.key %>
               <% else %>
@@ -56,19 +56,19 @@
     <% end %>
   </div>
 
-  <div id="home-carousel" class="carousel slide" data-ride="carousel" style="width: 300px; height: 540px;">
+  <div id="home-carousel" class="carousel slide" data-ride="carousel" style="width: 350px; height: 562px;">
     <div class="carousel-inner">
       <div class="carousel-item active">
         <%= cl_image_tag("nd3uzod826alxywcoielpf5bhwse",
-        width: 300, height: 540, crop: :fill) %>
+        width: 350, height: 562, crop: :fill) %>
       </div>
       <div class="carousel-item">
         <%= cl_image_tag("hbuyhd47fcgys3bnsf3c9k4b9hw0",
-        width: 300, height: 540, crop: :fill) %>
+        width: 350, height: 562, crop: :fill) %>
       </div>
       <div class="carousel-item">
         <%= cl_image_tag("eo2k30o9qn19fz9wn6wi6gaj6edw",
-              width: 300, height: 540, crop: :fill) %>
+              width: 350, height: 562, crop: :fill) %>
       </div>
     </div>
     <a class="carousel-control-prev" href="#home-carousel" role="button" data-slide="prev">
