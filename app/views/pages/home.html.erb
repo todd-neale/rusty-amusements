@@ -1,10 +1,33 @@
 <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://www.sheffield.ac.uk/polopoly_fs/1.454531!/image/DumfriesRoodFair.JPG);">
   <div class="container">
-    <h1 class="circus">Rusty Amusements provides a range of classic amusements for hire</h1>
-    <p>Change your party and hire an amusement today</p>
-    <!-- <a class="btn btn-flat" href="#">Apply now</a> -->
+    <h1 class="circus">One man's trash is Rusty's inventory</h1>
+    <p>Embark on a <em>lifechanging</em> experience</p>
+    <%= link_to amusements_path do  %>
+      <button type="button" class="btn btn-danger">Explore amusements</button>
+    <% end %>
   </div>
 </div>
+
+<div class="cards">
+  <div class="card-minimal">
+    <%= image_tag "eye_fear", alt: "fearful eye" %>
+    <h3>High octane thrills</h3>
+    <h5>Amusements that will have your heart in your mouth, from beginning to unanticipated end.</h5>
+  </div>
+
+  <div class="card-minimal">
+    <%= image_tag "money_wings", alt: "money with wings" %>
+    <h3>Cash in hand</h3>
+    <h5>Experience life the rusty way. No more traces, no more questions. Live free.</h5>
+  </div>
+
+  <div class="card-minimal">
+    <%= image_tag "no_phones", alt: "barred phone icon" %>
+    <h3>Discounts galore</h3>
+    <h5>Tell your friends? <strong>Discount</strong>. Bulk buy? <strong>Discount</strong>. Refrain from contacting the authorities? <strong>Discount</strong>.</h5>
+  </div>
+</div>
+
 <h1 class="circus">Available for hire...</h1>
 
 <div class="carousel-container">
