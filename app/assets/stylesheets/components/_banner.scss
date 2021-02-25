@@ -8,9 +8,15 @@
   color: $earwax-yellow;
   h1 {
     margin: 0;
-    font-size: 48px;
+    font-size: 80px;
     text-shadow: 3px 3px 3px $red;
   }
+
+  h2 {
+    font-size: 40px;
+    text-shadow: 3px 3px 3px $red;
+  }
+
   p {
     font-size: 20px;
     opacity: .7;
