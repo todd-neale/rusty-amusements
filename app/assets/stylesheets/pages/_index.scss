@@ -1,3 +1,20 @@
 // Import page-specific CSS files here.
 @import "home";
 @import "show";
+
+.content {
+  display: flex;
+  padding-left: 16px;
+}
+
+.index-cards-container {
+  flex: 1 0 600px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.index-card {
+  margin: 8px;
+  width: 200px;
+}

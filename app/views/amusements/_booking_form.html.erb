@@ -1,0 +1,7 @@
+<%= simple_form_for [@amusement, @booking] do |f| %>
+  <%= f.input :start_date, as: :date, html5: true %>
+  <%= f.input :end_date, as: :date, html5: true %>
+  <%= f.button :submit, value: "Checkout", class: "btn btn-danger" %>
+<% end %>
+
+

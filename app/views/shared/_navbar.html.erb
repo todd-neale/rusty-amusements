@@ -11,13 +11,15 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <% if user_signed_in? %>
-        <li class="nav-item">
+        <li class="nav-item" id="nav-item-white-text">
           <%= link_to "All amusements", amusements_path, class: "nav-link" %>
         </li>
         <li class="nav-item dropdown">
-          <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+          <% profile_picture = current_user.photo.attached? ? current_user.photo.key : "gurn1_s3il5m" %>
+          <%= cl_image_tag profile_picture, class: "avatar dropdown-toggle pointer", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-            <%= link_to "Become a purve", new_amusement_path, class: "dropdown-item" %>
+            <%= link_to "My Profile", user_path(current_user), class: "dropdown-item" %>
+            <%= link_to "Add an amusement", new_amusement_path, class: "dropdown-item" %>
             <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
           </div>
         </li>

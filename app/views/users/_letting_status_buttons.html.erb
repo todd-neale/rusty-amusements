@@ -1,0 +1,7 @@
+<% case letting.status %>
+  <% when "pending" %>
+  <%= link_to 'Accept Booking', booking_path(letting, status: 'confirmed'), method: :patch, class: "btn btn-success" %>
+  <%= link_to 'Reject Booking', booking_path(letting, status: 'rejected'), method: :patch, class: "btn btn-danger" %>
+  <% when "confirmed" %>
+  <%= link_to 'Cancel Booking', booking_path(letting, status: 'cancelled'), method: :patch, class: "btn btn-danger" %>
+<% end %>

@@ -1,11 +1,32 @@
 class AmusementsController < ApplicationController
   def index
-    # @amusements = Amusement.all
-    @amusements = policy_scope(Amusement)
+    # @amusements = policy_scope(Amusement)
+    if params[:query]
+      @amusements = policy_scope(Amusement.index_search(params[:query]))
+      @apology = "Sozza. No results for that search. Try 'dodgems'" if @amusements.empty?
+    else
+      @amusements = policy_scope(Amusement.all)
+    end
+
+    @markers = @amusements.geocoded.map do |amusement|
+      {
+        lat: amusement.latitude,
+        lng: amusement.longitude,
+        infoWindow: render_to_string(partial: "info_window", locals: { amusement: amusement })
+      }
+    end
   end
 
   def show
     @amusement = Amusement.find(params[:id])
+    @booking = Booking.new
+    @reviews = @amusement.reviews.shuffle.first(5)
+    if @amusement.bookings.map { |boo| boo.user }.include? current_user
+      @booking_for_review = Booking.where(amusement: @amusement, user: current_user)[0]
+      @review = Review.new
+    end
+    ratings = @amusement.reviews.map { |r| r.rating }
+    @rating = ratings.empty? ? 0.00 : (ratings.sum(0.0) / ratings.size).round(2)
     authorize @amusement
   end
 
@@ -45,6 +66,6 @@ class AmusementsController < ApplicationController
   private
 
   def amusement_params
-    params.require(:amusement).permit(:name, :description, :price, photos: [])
+    params.require(:amusement).permit(:name, :tagline, :description, :address, :price, :deathcount, :size, :category, :haskilledanimals, :washingmachine, :childunfriendly, :heightrestriction, :haunting, :illegal, photos: [])
   end
 end

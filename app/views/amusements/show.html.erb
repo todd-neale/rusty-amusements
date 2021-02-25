@@ -1,18 +1,97 @@
 <div class="container mt-5">
-  <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/greece.jpg);">
-    <div class="container">
-    <h1><%= @amusement.name %></h1>
-    <p>£<%= @amusement.price %></p>
+  <div class="title-bar">
+    <div class="title">
+      <h1><%= @amusement.name %></h1>
     </div>
+    <div class="subheading">
+      <span>★</span>
+      <span><strong><%= @rating %> </strong></span> &nbsp; &nbsp; &nbsp;
+      <span><%= @amusement.tagline %></span>
   </div>
+
+  <% if @amusement.photos.attached? %>
+    <div class="main-photo mt-3" style="background-image: url('<%= cl_image_path @amusement.photos.first.key %>');"></div>
+      <div class="tiles mt-2">
+        <% @amusement.photos[1..-1].each_with_index do |photo, i| %>
+          <% break if i == 3%>
+        <div class="tile-category" style="background-image: url('<%= cl_image_path photo.key %>');">
+        </div>
+        <% end %>
+    </div>
+  <% else %>
+    <div class="banner mt-3" style="background-image: url(https://meanderingwild.com/wp-content/uploads/2020/03/fairground-bumper-close.jpg);"></div>
+  <% end %>
+
+  <div id="ends" class="mt-2">
+    <% if @amusement.user == current_user %>
+      <%= link_to "Edit your Amusement", edit_amusement_path(@amusement), class: "btn btn-outline-danger" %>
+    <% else %>
+      <span>
+        <div class="dropdown">
+          <button class="btn btn-danger dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Book Now
+          </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenu2" id="dropdown-booking">
+              <div class="dropdown-form"> <%= render 'booking_form' %>
+              </div>
+            </div>
+        </div>
+      </span>
+    <% end %>
+    <span>from £<%=@amusement.price%>.99</span>
+  </div>
+
   <div class="description mt-3">
-    <p><%= @amusement.description %></p>
+    <div class="description-host">
+      <span> <h2> <%=@amusement.name%> rented by <%=@amusement.user.name%></h2> </span>
+    </div>
+    <HR>
+    <div>
+    <h4>Exclusive Features:<h4>
+    <ul>
+      <li><span><%= image_tag "jester.png", :width => "50px" %> <%=@amusement.category%></li>
+      <li><% if @amusement.haskilledanimals == true %>
+        <div><span><%= image_tag "dead.png", :width => "50px" %> </span> <span>This amusement has killed at least one animal </span></div>
+      <% end %>
+      <li><% if @amusement.childunfriendly == true %>
+          <div><span><%= image_tag "18.png", :width => "50px" %> </span> <span>This amusement is not child friendly</span></div>
+        <% end %>
+      <li><% if @amusement.heightrestriction == true%>
+            <div><span><%= image_tag "height.png", :width => "50px" %> </span> <span>This amusement has a height restriction of >1.5m</span><div>
+          <%end%>
+      <li>  <% if @amusement.haunting == true%>
+              <div><span><%= image_tag "psychosis.png", :width => "50px" %> </span> <span>Long term adverse affects caused to users in the past</span></div>
+            <%end%>
+      <li>  <% if @amusement.illegal == true%>
+              <div><span><%= image_tag "illegal.png", :width => "50px" %> </span> <span>This amusement is illegal in certain jurisdictions</span></div>
+            <%end%>
+      <li>  <% if @amusement.washingmachine == true%>
+              <div><span><%= image_tag "washing.png", :width => "50px" %> </span> <span>Washing machine included</span></div>
+            <%end%>
   </div>
-  <a class="btn btn-flat" href="#">Book now!</a>
-  <%= link_to 'Edit amusement', edit_amusement_path(@amusement) %> |
-  <%= link_to "Scrap amusement",
-                  amusement_path(@amusement),
-                  method: :delete,
-                  data: { confirm: "Are you sure?" } %>
+    
+  <HR>
+    <p><%= @amusement.description %></p>
+  <HR>
+
+
+    <div class="reviews">
+      <h3>Reviews</h3>
+        <% if @reviews.empty? %>
+          <h4>No reviews yet, but you can be sure it's awful</h4>
+        <% else %>
+          <% @reviews.each do |review| %>
+          <% review.rating.times do |num| %><%= '★' %><% end %>
+            <p><%= review.comment %></p>
+          <% end %>
+        <% end %>
+    </div>
+    <% if @review %>
+    <div class="review-form">
+      <%= render 'reviews/review_form' %>
+    </div>
+      <% end %>
+  </div>
 
 </div>
+

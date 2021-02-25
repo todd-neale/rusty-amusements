@@ -1,0 +1,85 @@
+<div class="banner banner-home mb-5" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://www.sheffield.ac.uk/polopoly_fs/1.454531!/image/DumfriesRoodFair.JPG);">
+  <div class="container">
+    <h1 class="circus">One man's trash is Rusty's inventory</h1>
+    <p>Embark on a <em>lifechanging</em> experience</p>
+    <div class="search-bar">
+      <%= render "amusements/search_form" %>
+    </div>
+    <%= link_to amusements_path do  %>
+      <button type="button" class="btn btn-lg btn-danger">Explore amusements</button>
+    <% end %>
+  </div>
+</div>
+
+<div class="cards mb-5">
+  <div class="card-minimal">
+    <%= image_tag "eye_fear", alt: "fearful eye" %>
+    <h5>High octane thrills</h5>
+    <p>Amusements that will have your heart in your mouth, from beginning to unanticipated end.</p>
+  </div>
+  <div class="card-minimal">
+    <%= image_tag "money_wings", alt: "money with wings" %>
+    <h5>Cash in hand</h5>
+    <p>Experience life the Rusty way. No more traces, no more questions. Live free.</p>
+  </div>
+
+  <div class="card-minimal">
+    <%= image_tag "no_phones", alt: "barred phone icon" %>
+    <h5>Discounts galore</h5>
+    <p>Tell your friends? <strong>Discount</strong>. Bulk buy? <strong>Discount</strong>. Refrain from contacting the authorities? <strong>Discount</strong>.</p>
+  </div>
+</div>
+
+<h1 class="circus text-center mb-5">Available for hire...</h1>
+
+<div class="d-flex justify-content-between" style="width: 90%; margin: 0 auto; grid-gap: 26px;
+">
+  <div class="row">
+    <% @amusements.each do |amusement| %>
+      <div class="col-6">
+        <%= link_to amusement_path(amusement) do %>
+            <div class="card-trip card-trip-home mb-4">
+              <% if amusement.photos.attached? %>
+                <%= cl_image_tag amusement.photos.first.key %>
+              <% else %>
+                <img src="https://meanderingwild.com/wp-content/uploads/2020/03/fairground-bumper-close.jpg" />
+              <% end %>
+              <div class="card-trip-infos">
+                <div>
+                  <h2><%= amusement.name %></h2>
+                  <p>★<strong>4.33</strong> <%= amusement.tagline %></p>
+                </div>
+                <h2 class="card-trip-pricing">£<%= amusement.price %></h2>
+                <img src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-trip-user avatar-bordered">
+              </div>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+
+  <div id="home-carousel" class="carousel slide" data-ride="carousel" style="width: 350px; height: 562px;">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <%= cl_image_tag("nd3uzod826alxywcoielpf5bhwse",
+        width: 350, height: 562, crop: :fill) %>
+      </div>
+      <div class="carousel-item">
+        <%= cl_image_tag("hbuyhd47fcgys3bnsf3c9k4b9hw0",
+        width: 350, height: 562, crop: :fill) %>
+      </div>
+      <div class="carousel-item">
+        <%= cl_image_tag("eo2k30o9qn19fz9wn6wi6gaj6edw",
+              width: 350, height: 562, crop: :fill) %>
+      </div>
+    </div>
+    <a class="carousel-control-prev" href="#home-carousel" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#home-carousel" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+</div>
