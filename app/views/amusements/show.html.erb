@@ -5,17 +5,18 @@
     </div>
     <div class="subheading">
       <span>★</span>
-      <span><strong>4.33</strong></span> &nbsp; &nbsp; &nbsp;
+      <span><strong><%= @rating %> </strong></span> &nbsp; &nbsp; &nbsp;
       <span><%= @amusement.tagline %></span>
   </div>
 
   <% if @amusement.photos.attached? %>
     <div class="banner mt-3" style="background-image: url('<%= cl_image_path @amusement.photos.first.key %>');"></div>
-    <div class="tiles mt-2">
-      <% @amusement.photos[1..-1].each_with_index do |photo, i| %>
-        <% break if i == 3%>
-        <div class="tile-category" style="background-image: url('<%= cl_image_path photo.key %>');"></div>
-      <% end %>
+      <div class="tiles mt-2">
+        <% @amusement.photos[1..-1].each_with_index do |photo, i| %>
+          <% break if i == 3%>
+        <div class="tile-category" style="background-image: url('<%= cl_image_path photo.key %>');">
+        </div>
+        <% end %>
     </div>
   <% else %>
     <div class="banner mt-3" style="background-image: url(https://meanderingwild.com/wp-content/uploads/2020/03/fairground-bumper-close.jpg);"></div>
@@ -37,7 +38,7 @@
         </div>
       </span>
     <% end %>
-    <span>from £<%=@amusement.price%>.00</span>
+    <span>from £<%=@amusement.price%>.99</span>
   </div>
 
   <div class="description mt-3">
@@ -67,26 +68,30 @@
       <li>  <% if @amusement.washingmachine == true%>
               <div><span><%= image_tag "washing.png", :width => "50px" %> </span> <span>Washing machine included</span></div>
             <%end%>
-    </div>
-    <HR>
-    <p><%= @amusement.description %></p>
-    <HR>
   </div>
-  <% if @review %>
+    
+  <HR>
+    <p><%= @amusement.description %></p>
+  <HR>
+
+
+    <div class="reviews">
+      <h3>Reviews</h3>
+        <% if @reviews.empty? %>
+          <h4>No reviews yet, but you can be sure it's awful</h4>
+        <% else %>
+          <% @reviews.each do |review| %>
+          <% review.rating.times do |num| %><%= '★' %><% end %>
+            <p><%= review.comment %></p>
+          <% end %>
+        <% end %>
+    </div>
+    <% if @review %>
     <div class="review-form">
       <%= render 'reviews/review_form' %>
     </div>
-  <% end %>
-  <div class="reviews">
-    <h3>Reviews</h3>
-    <% if @reviews.empty? %>
-      <h4>No reviews yet, but you can be sure it's awful</h4>
-    <% else %>
-      <% @reviews.each do |review| %>
-        <% review.rating.times do |num| %><%= '★' %><% end %>
-        <p><%= review.comment %></p>
       <% end %>
-    <% end %>
   </div>
+
 </div>
 

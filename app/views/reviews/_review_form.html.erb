@@ -1,5 +1,8 @@
+<HR>
+<h4>Please rate your experience</h4> 
 <%= simple_form_for [@booking_for_review, @review] do |f| %>
-  <%= f.input :rating, collection: 0..5 %>
+  <%= f.input :rating, collection: 1..5%>
   <%= f.input :comment %>
-  <%= f.button :submit, class: "btn btn-primary" %>
+  <%= f.submit "Send your review", class: "btn btn-danger" %>
 <% end %>
+
