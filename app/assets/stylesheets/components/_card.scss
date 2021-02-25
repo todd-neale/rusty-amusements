@@ -2,23 +2,26 @@
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 64px;
-  width: 80%;
-  margin: 0 auto 24px auto;
+  width: 85%;
+  margin: 0 auto;
 }
 
 .card-minimal {
   text-align: center;
-  height: 180px;
-  color: white;
-  font-size: 24px;
-  font-weight: bold;
+  height: 200px;
+  padding: 8px;
   text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
   border-radius: 5px;
-  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  font-weight: 12px;
+}
+
+.card-minimal h5 {
+  font-family: $circus-font;
 }
 
 .card-minimal img {
   width: 60px;
+  margin-bottom: 8px;
 }
 
 .card-trip {
