@@ -56,10 +56,16 @@
               <div class="card-trip-infos">
                 <div>
                   <h2><%= amusement.name %></h2>
-                  <p>★<strong>4.33</strong> <%= amusement.tagline %></p>
-                </div>
-                <h2 class="card-trip-pricing">£<%= amusement.price %></h2>
-                <img src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-trip-user avatar-bordered">
+                    <% ratings = amusement.reviews.map { |r| r.rating }
+                    rating = ratings.empty? ? 0.00 : (ratings.sum(0.0) / ratings.size).round(2) %>
+                    <p>★<strong><%= rating %></strong> <%= amusement.tagline %></p>
+                  </div>
+                  <h2 class="card-trip-pricing">£<%= amusement.price %></h2>
+                  <% if amusement.user.photo.key %>
+                    <%= cl_image_tag amusement.user.photo.key, class: "card-trip-user avatar-bordered" %>
+                  <% else %>
+                    <img src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-trip-user avatar-bordered" />
+                  <% end %>
               </div>
           </div>
           <% end %>
