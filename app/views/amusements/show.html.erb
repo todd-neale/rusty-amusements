@@ -72,7 +72,21 @@
     <p><%= @amusement.description %></p>
     <HR>
   </div>
-
-
+  <% if @review %>
+    <div class="review-form">
+      <%= render 'reviews/review_form' %>
+    </div>
+  <% end %>
+  <div class="reviews">
+    <h3>Reviews</h3>
+    <% if @reviews.empty? %>
+      <h4>No reviews yet, but you can be sure it's awful</h4>
+    <% else %>
+      <% @reviews.each do |review| %>
+        <% review.rating.times do |num| %><%= '★' %><% end %>
+        <p><%= review.comment %></p>
+      <% end %>
+    <% end %>
+  </div>
 </div>
 
