@@ -31,6 +31,75 @@
 
 <h1 class="less-circus text-center mb-5">Available for hire...</h1>
 
+
+
+
+
+
+
+<div class="d-flex justify-content-between" style="width: 90%; margin: 0 auto;">
+  <div class="container">
+    <div class="row">
+      <% @amusements.each do |amusement| %>
+        <div class="col-12 col-lg-6 p-0">
+          <%= link_to amusement_path(amusement) do %>
+            <div class="card-trip mb-4">
+              <% if amusement.photos.attached? %>
+                <%= cl_image_tag amusement.photos.first.key %>
+              <% else %>
+                <img src="https://meanderingwild.com/wp-content/uploads/2020/03/fairground-bumper-close.jpg" />
+              <% end %>
+              <div class="card-trip-infos">
+                <div>
+                  <h2><%= amusement.name %></h2>
+                  <p>★<strong>4.33</strong> <%= amusement.tagline %></p>
+                </div>
+                <h2 class="card-trip-pricing">£<%= amusement.price %></h2>
+                <img src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-trip-user avatar-bordered">
+              </div>
+          </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <div id="home-carousel" class="carousel slide" data-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <%= cl_image_tag("nd3uzod826alxywcoielpf5bhwse") %>
+      </div>
+      <div class="carousel-item">
+        <%= cl_image_tag("hbuyhd47fcgys3bnsf3c9k4b9hw0") %>
+      </div>
+      <div class="carousel-item">
+        <%= cl_image_tag("eo2k30o9qn19fz9wn6wi6gaj6edw") %>
+      </div>
+    </div>
+    <a class="carousel-control-prev" href="#home-carousel" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#home-carousel" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <div class="d-flex justify-content-between" style="width: 90%; margin: 0 auto; grid-gap: 26px;
 ">
   <div class="row">
@@ -57,7 +126,7 @@
     <% end %>
   </div>
 
-  <div id="home-carousel" class="carousel slide" data-ride="carousel" style="width: 350px; height: 562px;">
+  <div id="home-carousel" class="carousel slide" data-ride="carousel" style="width: 350px; height: 562px; position: sticky; top: 0;">
     <div class="carousel-inner">
       <div class="carousel-item active">
         <%= cl_image_tag("nd3uzod826alxywcoielpf5bhwse",
