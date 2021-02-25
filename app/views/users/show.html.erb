@@ -15,6 +15,7 @@
   <% unless @owned_amusements.empty? %>
     <h2>Amusements what I own</h2>
     <% @owned_amusements.each do |amusement| %>
+    <%= link_to amusement_path(amusement) do %>
     <div class="card-product my-3">
       <%= cl_image_tag amusement.photos.first.key, alt: "rust" %>
       <div class="card-product-infos">
@@ -23,6 +24,7 @@
         <%= link_to "Edit", edit_amusement_path(amusement), class: "btn btn-outline-secondary btn-sm" %>
       </div>
     </div>
+    <% end %>
     <% end %>
     <HR>
   <% end %>
