@@ -9,7 +9,6 @@
         <% if @apology %>
           <h3><%= @apology %></h3>
         <% end %>
-
         <% @amusements.each do |amusement| %>
           <%= link_to amusement_path(amusement) do %>
             <div class="index-card">
