@@ -24,7 +24,7 @@
 
   <div id="ends" class="mt-2">
     <% if @amusement.user == current_user %>
-      <%= link_to "Edit your Amusement", edit_amusement_path(@amusement), class: "btn btn-danger" %>
+      <%= link_to "Edit your Amusement", edit_amusement_path(@amusement), class: "btn btn-outline-danger" %>
     <% else %>
       <span>
         <div class="dropdown">
