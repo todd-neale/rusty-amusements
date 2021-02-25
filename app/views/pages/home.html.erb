@@ -1,9 +1,9 @@
-<div class="banner mb-5" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://www.sheffield.ac.uk/polopoly_fs/1.454531!/image/DumfriesRoodFair.JPG);">
+<div class="banner banner-home mb-5" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://www.sheffield.ac.uk/polopoly_fs/1.454531!/image/DumfriesRoodFair.JPG);">
   <div class="container">
     <h1 class="circus">One man's trash is Rusty's inventory</h1>
     <p>Embark on a <em>lifechanging</em> experience</p>
     <%= link_to amusements_path do  %>
-      <button type="button" class="btn btn-danger">Explore amusements</button>
+      <button type="button" class="btn btn-lg btn-danger">Explore amusements</button>
     <% end %>
   </div>
 </div>
@@ -30,44 +30,45 @@
 
 <h1 class="circus text-center mb-5">Available for hire...</h1>
 
-<div class="d-flex justify-content-between" style="width: 85%;">
-  <div>
+<div class="d-flex justify-content-between" style="width: 90%; margin: 0 auto; grid-gap: 26px;
+">
+  <div class="row">
     <% @amusements.each do |amusement| %>
-      <%= link_to amusement_path(amusement) do %>
-        <div class="card-flexbox">
-          <div class="card-trip">
-            <% if amusement.photos.attached? %>
-              <%= cl_image_tag amusement.photos.first.key %>
-            <% else %>
-              <img src="https://meanderingwild.com/wp-content/uploads/2020/03/fairground-bumper-close.jpg" />
-            <% end %>
-            <div class="card-trip-infos">
-              <div>
-                <h2><%= amusement.name %></h2>
-                <p>★<strong>4.33</strong> <%= amusement.tagline %></p>
+      <div class="col-6">
+        <%= link_to amusement_path(amusement) do %>
+            <div class="card-trip card-trip-home">
+              <% if amusement.photos.attached? %>
+                <%= cl_image_tag amusement.photos.first.key %>
+              <% else %>
+                <img src="https://meanderingwild.com/wp-content/uploads/2020/03/fairground-bumper-close.jpg" />
+              <% end %>
+              <div class="card-trip-infos">
+                <div>
+                  <h2><%= amusement.name %></h2>
+                  <p>★<strong>4.33</strong> <%= amusement.tagline %></p>
+                </div>
+                <h2 class="card-trip-pricing">£<%= amusement.price %></h2>
+                <img src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-trip-user avatar-bordered">
               </div>
-              <h2 class="card-trip-pricing">£<%= amusement.price %>.00</h2>
-              <img src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-trip-user avatar-bordered">
-            </div>
           </div>
-        </div>
-      <% end %>
+        <% end %>
+      </div>
     <% end %>
   </div>
 
-  <div id="home-carousel" class="carousel slide" data-ride="carousel" style="width: 400px; height: 300px;">
+  <div id="home-carousel" class="carousel slide" data-ride="carousel" style="width: 300px; height: 540px;">
     <div class="carousel-inner">
       <div class="carousel-item active">
         <%= cl_image_tag("nd3uzod826alxywcoielpf5bhwse",
-        width: 400, height: 300, crop: :fill) %>
+        width: 300, height: 540, crop: :fill) %>
       </div>
       <div class="carousel-item">
         <%= cl_image_tag("hbuyhd47fcgys3bnsf3c9k4b9hw0",
-        width: 400, height: 300, crop: :fill) %>
+        width: 300, height: 540, crop: :fill) %>
       </div>
       <div class="carousel-item">
         <%= cl_image_tag("eo2k30o9qn19fz9wn6wi6gaj6edw",
-              width: 400, height: 300, crop: :fill) %>
+              width: 300, height: 540, crop: :fill) %>
       </div>
     </div>
     <a class="carousel-control-prev" href="#home-carousel" role="button" data-slide="prev">

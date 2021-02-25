@@ -17,7 +17,7 @@
     <% @amusements.each do |amusement| %>
     <%= link_to amusement_path(amusement) do %>
     <div class="card-flexbox">
-      <div class="card-trip">
+      <div class="card-trip card-trip-home">
         <% if amusement.photos.attached? %>
         <%= cl_image_tag amusement.photos.first.key %>
         <% else %>

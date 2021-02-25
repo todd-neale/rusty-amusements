@@ -48,7 +48,6 @@
   margin: 0;
 }
 
-
 .card-trip .card-trip-infos {
   padding: 16px;
   display: flex;
@@ -62,4 +61,13 @@
   right: 16px;
   top: -20px;
   width: 40px;
+}
+
+.card-trip-home {
+  width: 350px;
+}
+
+.card-trip-home > img {
+  height: 10;
+  width: 80%;
 }
