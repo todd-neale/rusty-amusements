@@ -1,11 +1,17 @@
 <body>
+  
+
   <div class="content">
-    <div style="flex: 1 0 600px">
+    <div>
       <h1 class="text-center">Available Amusements</h1>
       <div class="search-bar">
         <%= render "search_form" %>
       </div>
-      <div class="index-cards-container">
+    </div>
+  </div>
+
+  <div class="amusement-container mt-3">
+    <div class="index-cards-container">
         <% if @apology %>
           <h3><%= @apology %></h3>
         <% end %>
@@ -21,9 +27,11 @@
                 <div class="card-trip-infos">
                   <div>
                     <h2><%= amusement.name %></h2>
-                    <p>★<strong>4.33</strong> <%= amusement.tagline %></p>
+                    <% ratings = amusement.reviews.map { |r| r.rating } 
+                    rating = ratings.empty? ? 0.00 : (ratings.sum(0.0) / ratings.size).round(2) %>
+                    <p>★<strong><%= rating %></strong> <%= amusement.tagline %></p>
                   </div>
-                  <h2 class="card-trip-pricing">£<%= amusement.price %>.00</h2>
+                  <h2 class="card-trip-pricing">£<%= amusement.price %></h2>
                   <% if amusement.user.photo.key %>
                     <%= cl_image_tag amusement.user.photo.key, class: "card-trip-user avatar-bordered" %>
                   <% else %>
@@ -35,15 +43,13 @@
           <% end %>
         <% end %>
       </div>
+    
+
+
+      <div id="map"
+          data-markers="<%= @markers.to_json %>"
+          data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
+      </div>
     </div>
-    <div id="map"
-         style="
-            height: 100vh;
-            width: 400px;
-            position: sticky;
-            top: 0;"
-         data-markers="<%= @markers.to_json %>"
-         data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
     </div>
-  </div>
 </body>
