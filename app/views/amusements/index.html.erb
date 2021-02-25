@@ -3,15 +3,7 @@
 
     <h1>Available Amusements</h1>
     <div class="search-bar">
-      <%= form_tag amusements_path, method: :get, class: "d-flex justify-content-center" do %>
-        <%= text_field_tag :query,
-          params[:query],
-          placeholder: "search in me",
-          class: "form-control",
-          style: "width: 300px"
-        %>
-        <%= submit_tag "search", class: "btn btn-primary ml-3" %>
-      <% end %>
+      <%= render "search_form" %>
     </div>
 
     <div id="map"
@@ -22,8 +14,9 @@
 
 
   <div class="flexbox">
-
-
+    <% if @apology %>
+      <h3><%= @apology %></h3>
+    <% end %>
 
     <% @amusements.each do |amusement| %>
     <%= link_to amusement_path(amusement) do %>

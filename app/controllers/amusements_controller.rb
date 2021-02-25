@@ -1,7 +1,11 @@
 class AmusementsController < ApplicationController
   def index
-    @amusements = Amusement.all
-    raise
+    if params[:query]
+      @amusements = Amusement.index_search(params[:query])
+      @apology = "Sozza. No results for that search. Try 'dodgems'" if @amusements.empty?
+    else
+      @amusements = Amusement.all
+    end
 
     @markers = @amusements.geocoded.map do |amusement|
       {

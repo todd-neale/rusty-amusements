@@ -8,5 +8,14 @@ class Amusement < ApplicationRecord
 
   geocoded_by :address
   after_validation :geocode, if: :will_save_change_to_address?
-end
 
+  include PgSearch::Model
+  pg_search_scope :index_search,
+    against: [ :name, :description, :tagline, :category ],
+    associated_against: {
+      user: [ :name ]
+    },
+    using: {
+      tsearch: { prefix: true }
+    }
+end
