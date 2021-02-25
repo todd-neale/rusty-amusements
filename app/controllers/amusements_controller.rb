@@ -1,6 +1,7 @@
 class AmusementsController < ApplicationController
   def index
     @amusements = Amusement.all
+    raise
 
     @markers = @amusements.geocoded.map do |amusement|
       {
