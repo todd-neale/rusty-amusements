@@ -20,8 +20,7 @@
       <%= cl_image_tag amusement.photos.first.key, alt: "rust" %>
       <div class="card-product-infos">
         <h2><%= amusement.name %></h2>
-        <p><%= amusement.tagline %></p>
-        <%= link_to "Edit", edit_amusement_path(amusement), class: "btn btn-outline-secondary btn-sm" %>
+        <p><span><%= amusement.tagline %></span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span><%= link_to "Edit", edit_amusement_path(amusement), class: "btn btn-outline-secondary btn-sm" %></span></p>
       </div>
     </div>
     <% end %>
@@ -36,7 +35,7 @@
         <%= cl_image_tag booking.amusement.photos.first.key, alt: "rust" %>
         <div class="card-product-infos">
           <h2><%= booking.amusement.name %></h2>
-          <p><%= booking.start_date %> to <%= booking.end_date %></p>
+          <p><%= booking.start_date.to_formatted_s(:long_ordinal) %> to <%= booking.end_date.to_formatted_s(:long_ordinal) %></p>
           <p><%= booking.status %></p>
           <%= render 'booking_status_buttons', booking: booking %>
         </div>
@@ -52,9 +51,8 @@
         <%= cl_image_tag letting.amusement.photos.first.key, alt: "rust" %>
         <div class="card-product-infos">
           <h2><%= letting.amusement.name %></h2>
-          <p><%= letting.start_date %> to <%= letting.end_date %></p>
-          <p><%= letting.status %></p>
-          <%= render 'letting_status_buttons', letting: letting %>
+          <p><%= letting.start_date.to_formatted_s(:long_ordinal) %> to <%= letting.end_date.to_formatted_s(:long_ordinal)  %></p>
+          <p><span><%= letting.status %></span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span><%= render 'letting_status_buttons', letting: letting %></span></p>
         </div>
       </div>
     <% end %>

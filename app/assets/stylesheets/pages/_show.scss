@@ -7,6 +7,8 @@ li {
   margin: 0 0 3px 0;
 }
 
+
+
 #ends {
   width: 90%;
   display: flex;
@@ -78,8 +80,18 @@ li {
 
 
 #dropdown-booking {
-  width: 700px;
+  width: 250px;
   height: 250px;
+}
+
+.main-photo {
+  background-size: cover;
+  background-position: center;
+  height: 450px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: $earwax-yellow;
 }
 
 // Smallest device

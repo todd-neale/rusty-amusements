@@ -8,7 +8,7 @@ class BookingsController < ApplicationController
       redirect_to user_path(current_user), notice: "Booking request sent to dangerous carnie."
     else
       # both hsould have some kind of alert/modal, to let them know of their success/failure
-      redirect_to amusement_path(@booking.amusement)
+      redirect_to amusement_path(@booking.amusement), notice: "Booking request unsuccessful"
     end
   end
 

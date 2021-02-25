@@ -1,42 +1,49 @@
 <body>
-  <div class="container mt5">
-
-    <h1>Available Amusements</h1>
-
-    <div id="map"
-    style="height: 500px;"
-    data-markers="<%= @markers.to_json %>"
-    data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
-    </div>
-
-
-  <div class="flexbox">
-
-
-
-    <% @amusements.each do |amusement| %>
-    <%= link_to amusement_path(amusement) do %>
-    <div class="card-flexbox">
-      <div class="card-trip">
-        <% if amusement.photos.attached? %>
-        <%= cl_image_tag amusement.photos.first.key %>
-        <% else %>
-        <img src="https://meanderingwild.com/wp-content/uploads/2020/03/fairground-bumper-close.jpg" />
+  <div class="content">
+    <div style="flex: 1 0 600px">
+      <h1 class="text-center">Available Amusements</h1>
+      <div class="search-bar">
+        <%= render "search_form" %>
+      </div>
+      <div class="index-cards-container">
+        <% if @apology %>
+          <h3><%= @apology %></h3>
         <% end %>
-        <div class="card-trip-infos">
-          <div>
-            <h2><%= amusement.name %></h2>
-            <p>★<strong>4.33</strong> <%= amusement.tagline %></p>
-          </div>
-          <h2 class="card-trip-pricing">£<%= amusement.price %>.00</h2>
-          <!-- remember to put in logic for IF user has picture -->
-          <img src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-trip-user avatar-bordered" />
-        </div>
+        <% @amusements.each do |amusement| %>
+          <%= link_to amusement_path(amusement) do %>
+            <div class="index-card">
+              <div class="card-trip">
+                <% if amusement.photos.attached? %>
+                  <%= cl_image_tag amusement.photos.first.key %>
+                <% else %>
+                  <img src="https://meanderingwild.com/wp-content/uploads/2020/03/fairground-bumper-close.jpg" />
+                <% end %>
+                <div class="card-trip-infos">
+                  <div>
+                    <h2><%= amusement.name %></h2>
+                    <p>★<strong>4.33</strong> <%= amusement.tagline %></p>
+                  </div>
+                  <h2 class="card-trip-pricing">£<%= amusement.price %>.00</h2>
+                  <% if amusement.user.photo.key %>
+                    <%= cl_image_tag amusement.user.photo.key, class: "card-trip-user avatar-bordered" %>
+                  <% else %>
+                    <img src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-trip-user avatar-bordered" />
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
       </div>
     </div>
-    <% end %>
-    <% end %>
+    <div id="map"
+         style="
+            height: 100vh;
+            width: 400px;
+            position: sticky;
+            top: 0;"
+         data-markers="<%= @markers.to_json %>"
+         data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
+    </div>
   </div>
-</div>
-
 </body>

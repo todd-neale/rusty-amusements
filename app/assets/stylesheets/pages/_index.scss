@@ -2,19 +2,19 @@
 @import "home";
 @import "show";
 
-.flexbox {
+.content {
+  display: flex;
+  padding-left: 16px;
+}
+
+.index-cards-container {
+  flex: 1 0 600px;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
 }
 
-.card-flexbox {
-  margin: 10px;
-  width: 400px;
-}
-
-#map {
-  height: 500px;
-  width: 100%;
-  margin: 20px 0;
+.index-card {
+  margin: 8px;
+  width: 200px;
 }
