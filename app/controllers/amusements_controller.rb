@@ -24,8 +24,7 @@ class AmusementsController < ApplicationController
       @booking_for_review = Booking.where(amusement: @amusement, user: current_user)[0]
       @review = Review.new
     end
-    ratings = @amusement.reviews.map { |r| r.rating } 
-    @rating = ratings.empty? ? 0.00 : (ratings.sum(0.0) / ratings.size).round(2)
+    @rating = rating(@amusement)
   end
 
   def new
@@ -64,4 +63,10 @@ class AmusementsController < ApplicationController
   def amusement_params
     params.require(:amusement).permit(:name, :tagline, :description, :address, :price, :deathcount, :size, :category, :haskilledanimals, :washingmachine, :childunfriendly, :heightrestriction, :haunting, :illegal, photos: [])
   end
+
+  def rating(amusement)
+    ratings = amusement.reviews.map { |r| r.rating } 
+    ratings.empty? ? 0.00 : (ratings.sum(0.0) / ratings.size).round(2)
+  end
+
 end

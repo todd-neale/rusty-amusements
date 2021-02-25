@@ -4,17 +4,29 @@
 
 .content {
   display: flex;
-  padding-left: 16px;
+  justify-content: center;
 }
 
 .index-cards-container {
-  flex: 1 0 600px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
+  width: 66%;
+  flex-grow: 1;
+  grid-gap: 16px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
 }
 
 .index-card {
   margin: 8px;
-  width: 200px;
+}
+
+.amusement-container {
+  display: flex;
+}
+
+#map {
+  margin-top: 8px;
+  height: 100vh;
+  width: 33vw;
+  position: sticky;
+  top: 0;
 }
