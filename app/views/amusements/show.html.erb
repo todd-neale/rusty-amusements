@@ -83,8 +83,8 @@
           <h4>No reviews yet, but you can be sure it's awful</h4>
         <% else %>
           <% @reviews.each do |review| %>
-          <% review.rating.times do |num| %><%= '★' %><% end %>
-            <p><%= review.comment %></p>
+            <% review.rating.times do |num| %><%= '★' %><% end %>
+            <p id="review-<%= review.id %>"><%= review.comment %></p>
           <% end %>
         <% end %>
     </div>
@@ -94,6 +94,5 @@
     </div>
       <% end %>
   </div>
-
 </div>
 
