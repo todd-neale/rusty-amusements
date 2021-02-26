@@ -121,15 +121,21 @@ avatar_arr = [
   'https://res.cloudinary.com/arfacamble/image/upload/v1614345238/NAKcaTMU_400x400_crpeiu.jpg',
   'https://res.cloudinary.com/arfacamble/image/upload/v1614345238/72580072_diivzt.jpg'
 ]
+date_arr = [
+  {start_date: "2021-02-08", end_date: "2021-02-12", status: 'completed'},
+  {start_date: "2021-03-08", end_date: "2021-04-12", status: 'completed'},
+  {start_date: "2021-05-08", end_date: "2021-06-12", status: 'completed'}
+]
+
 count = 0
-3.times do
+1.times do
   user = User.new(email: Faker::Internet.email, password: 'password', password_confirmation: 'password')
   avatar_img = URI.open(avatar_arr[count])
   user.photo.attach(io: avatar_img, filename: 'avatar.png', content_type: 'image/png')
   user.save
   amusements = Amusement.all.reject { |a| a.user == rusty }
   amusements.each do |amusement|
-    booking = Booking.new(start_date: "2021-02-08", end_date: "2021-02-12", status: 'completed')
+    booking = Booking.new(date_arr[count])
     booking.user = user
     booking.amusement = amusement
     booking.save
