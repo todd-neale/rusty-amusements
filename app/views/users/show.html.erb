@@ -19,7 +19,11 @@
     <% @owned_amusements.each do |amusement| %>
       <%= link_to amusement_path(amusement) do %>
         <div class="card-product my-3">
-          <%= cl_image_tag amusement.photos.first.key, alt: "rust" %>
+          <% if amusement.photos.attached? %>
+            <%= cl_image_tag amusement.photos.first.key %>
+          <% else %>
+            <img src="https://meanderingwild.com/wp-content/uploads/2020/03/fairground-bumper-close.jpg" />
+          <% end %>
           <div class="card-product-infos">
             <h2><%= amusement.name %></h2>
             <p><span><%= amusement.tagline %></span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span><%= link_to "Edit", edit_amusement_path(amusement), class: "btn btn-danger btn-sm" %></span></p>
