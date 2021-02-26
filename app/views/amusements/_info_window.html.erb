@@ -1,17 +1,18 @@
-
-<div class="card-map">
-  <% if amusement.photos.attached? %>
-    <%= cl_image_tag amusement.photos.first.key %>
-  <% else %>
-    <img src="https://meanderingwild.com/wp-content/uploads/2020/03/fairground-bumper-close.jpg" />
-  <% end %>
-  <div class="card-map-infos">
-    <div>
-      <h2><%= amusement.name %></h2>
-      <% ratings = amusement.reviews.map { |r| r.rating } 
-      rating = ratings.empty? ? 0.00 : (ratings.sum(0.0) / ratings.size).round(2) %>
-      <p>★<strong><%= rating %></strong> <%= amusement.tagline %></p>
+ <%= link_to amusement_path(amusement) do %>
+  <div class="card-map">
+    <% if amusement.photos.attached? %>
+      <%= cl_image_tag amusement.photos.first.key %>
+    <% else %>
+      <img src="https://meanderingwild.com/wp-content/uploads/2020/03/fairground-bumper-close.jpg" />
+    <% end %>
+    <div class="card-map-infos">
+      <div>
+        <h2><%= amusement.name %></h2>
+        <% ratings = amusement.reviews.map { |r| r.rating } 
+        rating = ratings.empty? ? 0.00 : (ratings.sum(0.0) / ratings.size).round(2) %>
+        <p>★<strong><%= rating %></strong> <%= amusement.tagline %></p>
+      </div>
+      <h2 class="card-trip-pricing">£<%= amusement.price %></h2>
     </div>
-    <h2 class="card-trip-pricing">£<%= amusement.price %></h2>
   </div>
-</div>
+<%end%>
