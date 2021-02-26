@@ -1,6 +1,8 @@
 require 'open-uri'
 
 puts "scrapping amusements, killing users"
+Review.destroy_all
+Booking.destroy_all
 Amusement.destroy_all
 User.destroy_all
 
