@@ -38,7 +38,10 @@
     <h2>Bookings what are coming up</h2>
     <% @bookings.each do |booking| %>
       <div class="card-product my-3">
-        <%= cl_image_tag booking.amusement.photos.first.key, alt: "rust" %>
+        <% if amusement.photos.attached? %>
+          <%= cl_image_tag amusement.photos.first.key %>
+        <% else %>
+          <img src="https://meanderingwild.com/wp-content/uploads/2020/03/fairground-bumper-close.jpg" />
         <div class="card-product-infos">
           <h2><%= booking.amusement.name %></h2>
           <p><%= booking.start_date.to_formatted_s(:long_ordinal) %> to <%= booking.end_date.to_formatted_s(:long_ordinal) %></p>
@@ -54,7 +57,10 @@
     <h2>Amusements what people want from me</h2>
     <% @lettings.each do |letting| %>
       <div class="card-product my-3">
-        <%= cl_image_tag letting.amusement.photos.first.key, alt: "rust" %>
+        <% if amusement.photos.attached? %>
+          <%= cl_image_tag amusement.photos.first.key %>
+        <% else %>
+          <img src="https://meanderingwild.com/wp-content/uploads/2020/03/fairground-bumper-close.jpg" />
         <div class="card-product-infos">
           <h2><%= letting.amusement.name %></h2>
           <p><%= letting.start_date.to_formatted_s(:long_ordinal) %> to <%= letting.end_date.to_formatted_s(:long_ordinal)  %></p>
