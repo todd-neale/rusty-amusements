@@ -32,7 +32,9 @@
             Book Now
           </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenu2" id="dropdown-booking">
-              <div class="dropdown-form"> <%= render 'booking_form' %>
+              <div class="dropdown-form">
+                <%= render 'booking_form' %>
+                <input class="widget-content" type="hidden" data-unavailable="<%= @amusement.unavailable_dates.to_json %>">
               </div>
             </div>
         </div>

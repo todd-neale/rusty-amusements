@@ -65,8 +65,7 @@ class AmusementsController < ApplicationController
   end
 
   def rating(amusement)
-    ratings = amusement.reviews.map { |r| r.rating } 
+    ratings = amusement.reviews.map { |r| r.rating }
     ratings.empty? ? 0.00 : (ratings.sum(0.0) / ratings.size).round(2)
   end
-
 end
