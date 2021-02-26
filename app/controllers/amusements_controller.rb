@@ -20,7 +20,11 @@ class AmusementsController < ApplicationController
   def show
     @amusement = Amusement.find(params[:id])
     @booking = Booking.new
+    @new_review = Review.find params[:rev_id] if params[:rev_id]
     @reviews = @amusement.reviews.shuffle.first(5)
+    if @new_review
+      @reviews << @new_review unless @reviews.include? @new_review
+    end
     if @amusement.bookings.map { |boo| boo.user }.include? current_user
       @booking_for_review = Booking.where(amusement: @amusement, user: current_user)[0]
       @review = Review.new
@@ -67,5 +71,10 @@ class AmusementsController < ApplicationController
 
   def amusement_params
     params.require(:amusement).permit(:name, :tagline, :description, :address, :price, :deathcount, :size, :category, :haskilledanimals, :washingmachine, :childunfriendly, :heightrestriction, :haunting, :illegal, photos: [])
+  end
+
+  def rating(amusement)
+    ratings = amusement.reviews.map { |r| r.rating }
+    ratings.empty? ? 0.00 : (ratings.sum(0.0) / ratings.size).round(2)
   end
 end

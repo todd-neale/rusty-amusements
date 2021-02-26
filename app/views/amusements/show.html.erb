@@ -24,7 +24,7 @@
 
   <div id="ends" class="mt-2">
     <% if @amusement.user == current_user %>
-      <%= link_to "Edit your Amusement", edit_amusement_path(@amusement), class: "btn btn-outline-danger" %>
+      <%= link_to "Edit your Amusement", edit_amusement_path(@amusement), class: "btn btn-danger" %>
     <% else %>
       <span>
         <div class="dropdown">
@@ -32,7 +32,9 @@
             Book Now
           </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenu2" id="dropdown-booking">
-              <div class="dropdown-form"> <%= render 'booking_form' %>
+              <div class="dropdown-form">
+                <%= render 'booking_form' %>
+                <input class="widget-content" type="hidden" data-unavailable="<%= @amusement.unavailable_dates.to_json %>">
               </div>
             </div>
         </div>
@@ -69,7 +71,7 @@
               <div><span><%= image_tag "washing.png", :width => "50px" %> </span> <span>Washing machine included</span></div>
             <%end%>
   </div>
-    
+
   <HR>
     <p><%= @amusement.description %></p>
   <HR>
@@ -81,8 +83,8 @@
           <h4>No reviews yet, but you can be sure it's awful</h4>
         <% else %>
           <% @reviews.each do |review| %>
-          <% review.rating.times do |num| %><%= '★' %><% end %>
-            <p><%= review.comment %></p>
+            <% review.rating.times do |num| %><%= '★' %><% end %>
+            <p id="review-<%= review.id %>"><%= review.comment %></p>
           <% end %>
         <% end %>
     </div>
@@ -92,6 +94,5 @@
     </div>
       <% end %>
   </div>
-
 </div>
 

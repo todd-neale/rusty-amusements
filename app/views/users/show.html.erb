@@ -1,13 +1,15 @@
 <div class="container mt-5">
   <div class="profile-info">
     <% profile_picture = @user.photo.attached? ? @user.photo.key : "gurn1_s3il5m" %>
-      <%= cl_image_tag(profile_picture, width: 150, height: 150, crop: :fill) %>
-    <br>
-    <br>
-    <h1><%= @user.name %></h1>
-    <p><%= @user.email %></p>
-    <p> <strong>Rank:</strong> Carny </p>
-    <button type="button" class="btn btn-outline-info btn-sm"><%= link_to "Update my profile", edit_user_registration_path %></button>
+    <%= cl_image_tag(profile_picture, width: 150, height: 150, crop: :fill, style: "border-radius: 5px") %>
+    <div class="name-and-edit">
+      <h1><%= @user.name %></h1>
+      <%= link_to "Update my profile", edit_user_registration_path, class: "btn btn-danger btn-sm" %>
+    </div>
+    <div class="email-and-rank">
+      <p><%= @user.email %></p>
+      <p> <strong>Rank:</strong> Carny </p>
+    </div>
   </div>
 
   <HR>
@@ -15,15 +17,22 @@
   <% unless @owned_amusements.empty? %>
     <h2>Amusements what I own</h2>
     <% @owned_amusements.each do |amusement| %>
-    <%= link_to amusement_path(amusement) do %>
-    <div class="card-product my-3">
-      <%= cl_image_tag amusement.photos.first.key, alt: "rust" %>
-      <div class="card-product-infos">
-        <h2><%= amusement.name %></h2>
-        <p><span><%= amusement.tagline %></span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span><%= link_to "Edit", edit_amusement_path(amusement), class: "btn btn-outline-secondary btn-sm" %></span></p>
-      </div>
-    </div>
-    <% end %>
+      <%#= link_to amusement_path(amusement) do %>
+        <div class="card-product my-3">
+          <% if amusement.photos.attached? %>
+            <%= cl_image_tag amusement.photos.first.key %>
+          <% else %>
+            <img src="https://meanderingwild.com/wp-content/uploads/2020/03/fairground-bumper-close.jpg" />
+          <% end %>
+          <div class="card-product-infos">
+            <h2><%= amusement.name %></h2>
+            <div class="d-flex justify-content-between">
+              <p><%= amusement.tagline %></p>
+              <%= link_to "Edit", edit_amusement_path(amusement), class: "btn btn-danger btn-sm" %>
+            </div>
+          </div>
+        </div>
+      <%#end %>
     <% end %>
     <HR>
   <% end %>
@@ -32,12 +41,19 @@
     <h2>Bookings what are coming up</h2>
     <% @bookings.each do |booking| %>
       <div class="card-product my-3">
-        <%= cl_image_tag booking.amusement.photos.first.key, alt: "rust" %>
+        <% if booking.amusement.photos.attached? %>
+          <%= cl_image_tag booking.amusement.photos.first.key %>
+        <% else %>
+          <img src="https://meanderingwild.com/wp-content/uploads/2020/03/fairground-bumper-close.jpg" />
+        <% end %>
         <div class="card-product-infos">
           <h2><%= booking.amusement.name %></h2>
           <p><%= booking.start_date.to_formatted_s(:long_ordinal) %> to <%= booking.end_date.to_formatted_s(:long_ordinal) %></p>
+          <div class="d-flex justify-content-between">
           <p><%= booking.status %></p>
           <%= render 'booking_status_buttons', booking: booking %>
+          </div>
+          <b><%= "£#{(booking.end_date-booking.start_date).to_i*booking.amusement.price}" %></b>
         </div>
       </div>
     <% end %>
@@ -48,11 +64,19 @@
     <h2>Amusements what people want from me</h2>
     <% @lettings.each do |letting| %>
       <div class="card-product my-3">
-        <%= cl_image_tag letting.amusement.photos.first.key, alt: "rust" %>
+        <% if letting.amusement.photos.attached? %>
+          <%= cl_image_tag letting.amusement.photos.first.key %>
+        <% else %>
+          <img src="https://meanderingwild.com/wp-content/uploads/2020/03/fairground-bumper-close.jpg" />
+        <% end %>
         <div class="card-product-infos">
           <h2><%= letting.amusement.name %></h2>
           <p><%= letting.start_date.to_formatted_s(:long_ordinal) %> to <%= letting.end_date.to_formatted_s(:long_ordinal)  %></p>
-          <p><span><%= letting.status %></span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span><%= render 'letting_status_buttons', letting: letting %></span></p>
+          <div class="d-flex justify-content-between">
+          <p><%= letting.status %></p>
+          <%= render 'letting_status_buttons', letting: letting %>
+          </div>
+          <b><%= "£#{(letting.end_date-letting.start_date).to_i*letting.amusement.price}" %></b>
         </div>
       </div>
     <% end %>
