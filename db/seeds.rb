@@ -127,7 +127,8 @@ count = 0
   avatar_img = URI.open(avatar_arr[count])
   user.photo.attach(io: avatar_img, filename: 'avatar.png', content_type: 'image/png')
   user.save
-  Amusement.all.each do |amusement|
+  amusements = Amusement.all.reject { |a| a.user == rusty }
+  amusements.each do |amusement|
     booking = Booking.new(start_date: "2021-02-08", end_date: "2021-02-12", status: 'completed')
     booking.user = user
     booking.amusement = amusement
