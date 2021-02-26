@@ -10,6 +10,7 @@ class BookingsController < ApplicationController
       # both hsould have some kind of alert/modal, to let them know of their success/failure
       redirect_to amusement_path(@booking.amusement), notice: "Booking request unsuccessful"
     end
+    authorize @booking
   end
 
   def update

@@ -38,7 +38,7 @@
   <% end %>
 
   <% unless @bookings.empty? %>
-    <h2>Bookings what are coming up</h2>
+    <h2>Bookings what are coming up or I done before</h2>
     <% @bookings.each do |booking| %>
       <div class="card-product my-3">
         <% if booking.amusement.photos.attached? %>

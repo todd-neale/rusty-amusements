@@ -1,10 +1,11 @@
 class AmusementsController < ApplicationController
   def index
+    # @amusements = policy_scope(Amusement)
     if params[:query]
-      @amusements = Amusement.index_search(params[:query])
+      @amusements = policy_scope(Amusement.index_search(params[:query]))
       @apology = "Sozza. No results for that search. Try 'dodgems'" if @amusements.empty?
     else
-      @amusements = Amusement.all
+      @amusements = policy_scope(Amusement.all)
     end
 
     @markers = @amusements.geocoded.map do |amusement|
@@ -28,7 +29,9 @@ class AmusementsController < ApplicationController
       @booking_for_review = Booking.where(amusement: @amusement, user: current_user)[0]
       @review = Review.new
     end
-    @rating = rating(@amusement)
+    ratings = @amusement.reviews.map { |r| r.rating }
+    @rating = ratings.empty? ? 0.00 : (ratings.sum(0.0) / ratings.size).round(2)
+    authorize @amusement
   end
 
   def new
@@ -47,10 +50,12 @@ class AmusementsController < ApplicationController
 
   def edit
     @amusement = Amusement.find(params[:id])
+    authorize @amusement
   end
 
   def update
     @amusement = Amusement.find(params[:id])
+    authorize @amusement
     @amusement.update amusement_params
     redirect_to amusement_path(@amusement)
   end

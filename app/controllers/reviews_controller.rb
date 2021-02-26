@@ -9,6 +9,7 @@ class ReviewsController < ApplicationController
     else
       redirect_to user_path(current_user), notice: "review failed, maybe have another go"
     end
+    authorize @review
   end
 
   private
