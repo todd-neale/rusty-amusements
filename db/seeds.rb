@@ -116,8 +116,17 @@ schmuck_review_two.save
   end
 end
 
+avatar_arr = [
+  'https://res.cloudinary.com/arfacamble/image/upload/v1614345238/15oa1l_d2svad.jpg',
+  'https://res.cloudinary.com/arfacamble/image/upload/v1614345238/NAKcaTMU_400x400_crpeiu.jpg',
+  'https://res.cloudinary.com/arfacamble/image/upload/v1614345238/72580072_diivzt.jpg'
+]
+count = 0
 3.times do
-  user = User.create(email: Faker::Internet.email, password: 'password', password_confirmation: 'password')
+  user = User.new(email: Faker::Internet.email, password: 'password', password_confirmation: 'password')
+  avatar_img = URI.open(avatar_arr[count])
+  user.photo.attach(io: avatar_img, filename: 'avatar.png', content_type: 'image/png')
+  user.save
   Amusement.all.each do |amusement|
     booking = Booking.new(start_date: "2021-02-08", end_date: "2021-02-12", status: 'completed')
     booking.user = user
@@ -129,6 +138,7 @@ end
     review.booking = booking
     review.save
   end
+  count += 1
 end
 
 puts "finished"
