@@ -11,7 +11,6 @@ import { initMapbox } from '../plugins/init_mapbox';
 import { initStarRating } from '../plugins/init_star_rating';
 import { toggleDateInputs } from '../plugins/init_flatpickr';
 
-initStarRating();
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
@@ -30,6 +29,7 @@ import "bootstrap";
 
 document.addEventListener('turbolinks:load', () => {
   toggleDateInputs();
+  initStarRating();
   initMapbox();
 });
 
