@@ -35,13 +35,19 @@
 
 <h1 class="less-circus text-center mb-5">Available for hire...</h1>
 
-<div class="d-flex justify-content-between" style="width: 90%; margin: 0 auto; grid-gap: 26px;
-">
-  <div class="row">
-    <% @amusements.each do |amusement| %>
-      <div class="col-6">
-        <%= link_to amusement_path(amusement) do %>
-            <div class="card-trip card-trip-home mb-4">
+
+
+
+
+
+
+<div class="d-flex justify-content-between" style="width: 90%; margin: 0 auto;">
+  <div class="container">
+    <div class="row">
+      <% @amusements.each do |amusement| %>
+        <div class="col-12 col-lg-6 p-0">
+          <%= link_to amusement_path(amusement) do %>
+            <div class="card-trip mb-4 mr-4">
               <% if amusement.photos.attached? %>
                 <%= cl_image_tag amusement.photos.first.key %>
               <% else %>
@@ -50,30 +56,34 @@
               <div class="card-trip-infos">
                 <div>
                   <h2><%= amusement.name %></h2>
-                  <p>★<strong>4.33</strong> <%= amusement.tagline %></p>
-                </div>
-                <h2 class="card-trip-pricing">£<%= amusement.price %></h2>
-                <img src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-trip-user avatar-bordered">
+                    <% ratings = amusement.reviews.map { |r| r.rating }
+                    rating = ratings.empty? ? 0.00 : (ratings.sum(0.0) / ratings.size).round(2) %>
+                    <p>★<strong><%= rating %></strong> <%= amusement.tagline %></p>
+                  </div>
+                  <h2 class="card-trip-pricing">£<%= amusement.price %></h2>
+                  <% if amusement.user.photo.key %>
+                    <%= cl_image_tag amusement.user.photo.key, class: "card-trip-user avatar-bordered" %>
+                  <% else %>
+                    <img src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-trip-user avatar-bordered" />
+                  <% end %>
               </div>
           </div>
-        <% end %>
-      </div>
-    <% end %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
   </div>
 
-  <div id="home-carousel" class="carousel slide" data-ride="carousel" style="width: 350px; height: 562px;">
+  <div id="home-carousel" class="carousel slide" data-ride="carousel">
     <div class="carousel-inner">
       <div class="carousel-item active">
-        <%= cl_image_tag("nd3uzod826alxywcoielpf5bhwse",
-        width: 350, height: 562, crop: :fill) %>
+        <%= cl_image_tag("nd3uzod826alxywcoielpf5bhwse") %>
       </div>
       <div class="carousel-item">
-        <%= cl_image_tag("hbuyhd47fcgys3bnsf3c9k4b9hw0",
-        width: 350, height: 562, crop: :fill) %>
+        <%= cl_image_tag("hbuyhd47fcgys3bnsf3c9k4b9hw0") %>
       </div>
       <div class="carousel-item">
-        <%= cl_image_tag("eo2k30o9qn19fz9wn6wi6gaj6edw",
-              width: 350, height: 562, crop: :fill) %>
+        <%= cl_image_tag("eo2k30o9qn19fz9wn6wi6gaj6edw") %>
       </div>
     </div>
     <a class="carousel-control-prev" href="#home-carousel" role="button" data-slide="prev">
@@ -86,3 +96,8 @@
     </a>
   </div>
 </div>
+
+
+
+
+
