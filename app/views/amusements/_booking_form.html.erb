@@ -1,7 +1,5 @@
-<%= simple_form_for [@amusement, @booking] do |f| %>
-  <%= f.input :start_date, as: :date, html5: true %>
-  <%= f.input :end_date, as: :date, html5: true %>
-  <%= f.button :submit, value: "Checkout", class: "btn btn-danger" %>
+<%= simple_form_for([@amusement, @booking]) do |f| %>
+  <%= f.input :start_date, as: :string, label: "Dates", placeholder: "From", wrapper_html: { class: "inline_field_wrapper" } %>
+  <%= f.input :end_date, as: :string, label: '&nbsp;'.html_safe, placeholder: "To", disabled: true, wrapper_html: { class: "inline_field_wrapper" } %>
+  <%= f.submit "book", class: "btn btn-primary btn-lg btn-block btn-booking" %>
 <% end %>
-
-

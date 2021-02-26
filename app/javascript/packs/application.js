@@ -9,6 +9,7 @@ import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 import { initMapbox } from '../plugins/init_mapbox';
 import { initStarRating } from '../plugins/init_star_rating';
+import { toggleDateInputs } from '../plugins/init_flatpickr';
 
 initStarRating();
 Rails.start()
@@ -28,5 +29,7 @@ import "bootstrap";
 // import { initSelect2 } from '../components/init_select2';
 
 document.addEventListener('turbolinks:load', () => {
+  toggleDateInputs();
   initMapbox();
 });
+
