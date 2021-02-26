@@ -1,15 +1,14 @@
 <div class="banner banner-home mb-5" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://www.sheffield.ac.uk/polopoly_fs/1.454531!/image/DumfriesRoodFair.JPG);">
   <div class="container">
 
-    <h1 class="circus">Rusty Amusements</h1>
-    <h2 class="circus">One man's trash is Rusty's inventory</h2>
-    <p>Embark on a <em>lifechanging</em> experience</p>
-    <div class="search-bar">
-      <%= render "amusements/search_form" %>
-    </div>
+    <h1 class="circus">Rusty's Amusements</h1>
+    <h2 class="circus mb-5">One man's trash is Rusty's inventory</h2>
     <%= link_to amusements_path do  %>
       <button type="button" class="btn btn-lg btn-danger">Explore amusements</button>
     <% end %>
+    <div class="search-bar mt-3" style="display: flex;">
+      <%= render "amusements/search_form" %>
+    </div>
 
   </div>
 </div>
