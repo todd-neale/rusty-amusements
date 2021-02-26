@@ -6,8 +6,7 @@ Booking.destroy_all
 Amusement.destroy_all
 User.destroy_all
 
-puts "generating users and amusements"
-
+puts "generating users, amusements, bookings, reviews"
 
 def gen_random_amusement
   amusement = Amusement.new(name: Faker::Beer.name, description: Faker::Hipster.paragraph(sentence_count: 12), price: rand(200..10000), tagline: Faker::Cannabis.health_benefit, deathcount: rand(0..99) )
@@ -69,29 +68,41 @@ rusty = User.new(email: "rusty@test.com", name: 'Rusty Frabbe-Hoooole', password
 avatar_img = URI.open('https://res.cloudinary.com/arfacamble/image/upload/v1614102488/gurn3_k3mi0n.webp')
 rusty.photo.attach(io: avatar_img, filename: 'avatar.png', content_type: 'image/png')
 rusty.save
-amusement1 = Amusement.new(name: Faker::Beer.name,
-                          description: Faker::Hipster.paragraph(sentence_count: 12),
-                          price: rand(200..10000),
-                          tagline: Faker::Cannabis.health_benefit,
-                          deathcount: rand(0..99),
-                          haskilledanimals: true,
-                          childunfriendly:false,
-                          heightrestriction: false,
-                          haunting: true,
-                          illegal: false,
-                          washingmachine:true,
-                          size: 'Medium',
-                          category: 'Rollercoaster',
-                          address: 'Bothenhampton, Dorset' )
+amusement1 = Amusement.new(name: 'Death Roller', description: Faker::Hipster.paragraph(sentence_count: 12), price: rand(200..10000), tagline: 'Wood pre-charred, safety sold separately', deathcount: rand(0..99), haskilledanimals: true, childunfriendly:false, heightrestriction: true, haunting: false, illegal: true, washingmachine: true, size: 'Large', category: 'Rollercoaster', address: 'Bothenhampton, Dorset' )
 amusement1.user = rusty
 amuse_img = URI.open('https://res.cloudinary.com/arfacamble/image/upload/v1614172490/derilict-comet-rollercoaster-in-lincoln-park-massachusetts-abandoned-1987-via-psfk_vbldbo.jpg')
 amusement1.photos.attach(io: amuse_img, filename: "roller.jpg", content_type: 'image/png')
 amusement1.save
+amusement2 = Amusement.new(name: 'Dodgy Dodgers', description: Faker::Hipster.paragraph(sentence_count: 12), price: rand(200..10000), tagline: 'Rust-infused, tetanus-rich, immobile', deathcount: rand(0..99), haskilledanimals: false, childunfriendly:true, heightrestriction: false, haunting: true, illegal: false, washingmachine: false, size: 'Small', category: 'Dodgems', address: 'Shipton Gorge, Dorset' )
+amusement2.user = rusty
+amuse2_img = URI.open('https://res.cloudinary.com/arfacamble/image/upload/v1614341651/dodgems_nbs7up.jpg')
+amusement2.photos.attach(io: amuse2_img, filename: "dodgems.jpg", content_type: 'image/png')
+amusement2.save
 
 schmuck = User.new(email: 'schmuck@test.com', password: 'password', password_confirmation: 'password', name: "Schmuck McFool")
 avatar_img = URI.open('https://res.cloudinary.com/arfacamble/image/upload/v1614102488/gurn6_tbcttg.webp')
 schmuck.photo.attach(io: avatar_img, filename: 'avatar.png', content_type: 'image/png')
 schmuck.save
+
+schmuck_first_booking = Booking.new(start_date: "2021-02-01", end_date: "2021-02-04", status: 'completed')
+schmuck_first_booking.user = schmuck
+schmuck_first_booking.amusement = amusement1
+schmuck_first_booking.save
+
+schmuck_review_one = Review.new(rating: 5, comment: "killed three of my guests. EXCELLENT!")
+schmuck_review_one.user = schmuck
+schmuck_review_one.booking = schmuck_first_booking
+schmuck_review_one.save
+
+schmuck_second_booking = Booking.new(start_date: "2021-02-08", end_date: "2021-02-12", status: 'completed')
+schmuck_second_booking.user = schmuck
+schmuck_second_booking.amusement = amusement2
+schmuck_second_booking.save
+
+schmuck_review_two = Review.new(rating: 2, comment: "Children enjoyed far too much. None got tetanus, quite disappointed")
+schmuck_review_two.user = schmuck
+schmuck_review_two.booking = schmuck_second_booking
+schmuck_review_two.save
 
 3.times do
   user = User.new(email: Faker::Internet.email, password: 'password', password_confirmation: 'password')
@@ -103,6 +114,32 @@ schmuck.save
     amusement.user = user
     amusement.save
   end
+end
+
+avatar_arr = [
+  'https://res.cloudinary.com/arfacamble/image/upload/v1614345238/15oa1l_d2svad.jpg',
+  'https://res.cloudinary.com/arfacamble/image/upload/v1614345238/NAKcaTMU_400x400_crpeiu.jpg',
+  'https://res.cloudinary.com/arfacamble/image/upload/v1614345238/72580072_diivzt.jpg'
+]
+count = 0
+3.times do
+  user = User.new(email: Faker::Internet.email, password: 'password', password_confirmation: 'password')
+  avatar_img = URI.open(avatar_arr[count])
+  user.photo.attach(io: avatar_img, filename: 'avatar.png', content_type: 'image/png')
+  user.save
+  amusements = Amusement.all.reject { |a| a.user == rusty }
+  amusements.each do |amusement|
+    booking = Booking.new(start_date: "2021-02-08", end_date: "2021-02-12", status: 'completed')
+    booking.user = user
+    booking.amusement = amusement
+    booking.save
+
+    review = Review.new(rating: rand(1..5), comment: Faker::Movies::Lebowski.quote)
+    review.user = user
+    review.booking = booking
+    review.save
+  end
+  count += 1
 end
 
 puts "finished"
