@@ -84,6 +84,26 @@ avatar_img = URI.open('https://res.cloudinary.com/arfacamble/image/upload/v16141
 schmuck.photo.attach(io: avatar_img, filename: 'avatar.png', content_type: 'image/png')
 schmuck.save
 
+schmuck_first_booking = Booking.new(start_date: "2021-02-01", end_date: "2021-02-04", status: 'completed')
+schmuck_first_booking.user = schmuck
+schmuck_first_booking.amusement = amusement1
+schmuck_first_booking.save
+
+schmuck_review_one = Review.new(rating: 5, comment: "killed three of my guests. EXCELLENT!")
+schmuck_review_one.user = schmuck
+schmuck_review_one.booking = schmuck_first_booking
+schmuck_review_one.save
+
+schmuck_second_booking = Booking.new(start_date: "2021-02-08", end_date: "2021-02-12", status: 'completed')
+schmuck_second_booking.user = schmuck
+schmuck_second_booking.amusement = amusement2
+schmuck_second_booking.save
+
+schmuck_review_two = Review.new(rating: 2, comment: "Children enjoyed far too much. None got tetanus, quite disappointed")
+schmuck_review_two.user = schmuck
+schmuck_review_two.booking = schmuck_second_booking
+schmuck_review_two.save
+
 3.times do
   user = User.new(email: Faker::Internet.email, password: 'password', password_confirmation: 'password')
   user = assign_random_avatar(user)
@@ -93,6 +113,21 @@ schmuck.save
     amusement = gen_random_amusement
     amusement.user = user
     amusement.save
+  end
+end
+
+3.times do
+  user = User.create(email: Faker::Internet.email, password: 'password', password_confirmation: 'password')
+  Amusement.all.each do |amusement|
+    booking = Booking.new(start_date: "2021-02-08", end_date: "2021-02-12", status: 'completed')
+    booking.user = user
+    booking.amusement = amusement
+    booking.save
+
+    review = Review.new(rating: rand(1..5), comment: Faker::Movies::Lebowski.quote)
+    review.user = user
+    review.booking = booking
+    review.save
   end
 end
 
