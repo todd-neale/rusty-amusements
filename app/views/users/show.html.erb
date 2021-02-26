@@ -4,7 +4,7 @@
     <%= cl_image_tag(profile_picture, width: 150, height: 150, crop: :fill, style: "border-radius: 5px") %>
     <div class="name-and-edit">
       <h1><%= @user.name %></h1>
-      <%= link_to "Update my profile", edit_user_registration_path, class: "btn btn-outline-info btn-sm" %>
+      <%= link_to "Update my profile", edit_user_registration_path, class: "btn btn-danger btn-sm" %>
     </div>
     <div class="email-and-rank">
       <p><%= @user.email %></p>
@@ -22,7 +22,7 @@
           <%= cl_image_tag amusement.photos.first.key, alt: "rust" %>
           <div class="card-product-infos">
             <h2><%= amusement.name %></h2>
-            <p><span><%= amusement.tagline %></span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span><%= link_to "Edit", edit_amusement_path(amusement), class: "btn btn-outline-secondary btn-sm" %></span></p>
+            <p><span><%= amusement.tagline %></span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span><%= link_to "Edit", edit_amusement_path(amusement), class: "btn btn-danger btn-sm" %></span></p>
           </div>
         </div>
       <% end %>

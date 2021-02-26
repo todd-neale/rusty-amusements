@@ -24,7 +24,7 @@
 
   <div id="ends" class="mt-2">
     <% if @amusement.user == current_user %>
-      <%= link_to "Edit your Amusement", edit_amusement_path(@amusement), class: "btn btn-outline-danger" %>
+      <%= link_to "Edit your Amusement", edit_amusement_path(@amusement), class: "btn btn-danger" %>
     <% else %>
       <span>
         <div class="dropdown">
@@ -69,7 +69,7 @@
               <div><span><%= image_tag "washing.png", :width => "50px" %> </span> <span>Washing machine included</span></div>
             <%end%>
   </div>
-    
+
   <HR>
     <p><%= @amusement.description %></p>
   <HR>
