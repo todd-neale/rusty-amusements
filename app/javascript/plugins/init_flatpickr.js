@@ -1,7 +1,6 @@
 import flatpickr from 'flatpickr';
 
 const toggleDateInputs = function() {
-  console.log('here');
   const startDateInput = document.getElementById('booking_start_date');
   const endDateInput = document.getElementById('booking_end_date');
 
