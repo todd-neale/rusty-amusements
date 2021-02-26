@@ -2,7 +2,7 @@ class User < ApplicationRecord
   has_one_attached :photo
   has_many :amusements
   has_many :bookings
-  has_many :reviews
+  has_many :reviews, dependent: :destroy
   before_validation :name_or_email
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable

@@ -1,12 +1,10 @@
 require 'open-uri'
 
 puts "scrapping amusements, killing users"
-Booking.destroy_all
 Amusement.destroy_all
 User.destroy_all
 
-puts "generating users and amusements"
-
+puts "generating users, amusements, bookings, reviews"
 
 def gen_random_amusement
   amusement = Amusement.new(name: Faker::Beer.name, description: Faker::Hipster.paragraph(sentence_count: 12), price: rand(200..10000), tagline: Faker::Cannabis.health_benefit, deathcount: rand(0..99) )
@@ -68,24 +66,16 @@ rusty = User.new(email: "rusty@test.com", name: 'Rusty Frabbe-Hoooole', password
 avatar_img = URI.open('https://res.cloudinary.com/arfacamble/image/upload/v1614102488/gurn3_k3mi0n.webp')
 rusty.photo.attach(io: avatar_img, filename: 'avatar.png', content_type: 'image/png')
 rusty.save
-amusement1 = Amusement.new(name: Faker::Beer.name,
-                          description: Faker::Hipster.paragraph(sentence_count: 12),
-                          price: rand(200..10000),
-                          tagline: Faker::Cannabis.health_benefit,
-                          deathcount: rand(0..99),
-                          haskilledanimals: true,
-                          childunfriendly:false,
-                          heightrestriction: false,
-                          haunting: true,
-                          illegal: false,
-                          washingmachine:true,
-                          size: 'Medium',
-                          category: 'Rollercoaster',
-                          address: 'Bothenhampton, Dorset' )
+amusement1 = Amusement.new(name: 'Death Roller', description: Faker::Hipster.paragraph(sentence_count: 12), price: rand(200..10000), tagline: 'Wood pre-charred, safety sold separately', deathcount: rand(0..99), haskilledanimals: true, childunfriendly:false, heightrestriction: true, haunting: false, illegal: true, washingmachine: true, size: 'Large', category: 'Rollercoaster', address: 'Bothenhampton, Dorset' )
 amusement1.user = rusty
 amuse_img = URI.open('https://res.cloudinary.com/arfacamble/image/upload/v1614172490/derilict-comet-rollercoaster-in-lincoln-park-massachusetts-abandoned-1987-via-psfk_vbldbo.jpg')
 amusement1.photos.attach(io: amuse_img, filename: "roller.jpg", content_type: 'image/png')
 amusement1.save
+amusement2 = Amusement.new(name: 'Dodgy Dodgers', description: Faker::Hipster.paragraph(sentence_count: 12), price: rand(200..10000), tagline: 'Rust-infused, tetanus-rich, immobile', deathcount: rand(0..99), haskilledanimals: false, childunfriendly:true, heightrestriction: false, haunting: true, illegal: false, washingmachine: false, size: 'Small', category: 'Dodgems', address: 'Shipton Gorge, Dorset' )
+amusement2.user = rusty
+amuse2_img = URI.open('https://res.cloudinary.com/arfacamble/image/upload/v1614341651/dodgems_nbs7up.jpg')
+amusement2.photos.attach(io: amuse2_img, filename: "dodgems.jpg", content_type: 'image/png')
+amusement2.save
 
 schmuck = User.new(email: 'schmuck@test.com', password: 'password', password_confirmation: 'password', name: "Schmuck McFool")
 avatar_img = URI.open('https://res.cloudinary.com/arfacamble/image/upload/v1614102488/gurn6_tbcttg.webp')
