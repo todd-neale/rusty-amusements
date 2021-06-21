@@ -16,6 +16,7 @@ class BookingsController < ApplicationController
   def update
     @booking = Booking.find(params[:id])
     @booking.status = params[:status]
+    authorize @booking
     @booking.save
     redirect_to user_path(current_user), notice: "Booking status updated, look at your profile. Look closely."
   end
